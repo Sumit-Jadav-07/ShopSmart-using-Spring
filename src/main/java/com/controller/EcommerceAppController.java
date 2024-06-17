@@ -68,7 +68,6 @@ public class EcommerceAppController {
         StringBuilder passwordErrors = new StringBuilder();
         boolean authenticateStatus = true;
 
-        // Basic validation
         if (rEmail == null || rEmail.trim().length() == 0) {
             emailErrors.append("Please enter email");
             authenticateStatus = false;
@@ -78,7 +77,6 @@ public class EcommerceAppController {
             authenticateStatus = false;
         }
 
-        // Database validation
         if (authenticateStatus) {
             EcommerceAppBean dbUser = userDao.getUserByEmail(rEmail);
             if (dbUser == null) {
@@ -93,7 +91,6 @@ public class EcommerceAppController {
             }
         }
 
-        // Add errors to the model if any
         if (!emailErrors.toString().isEmpty()) {
             model.addAttribute("emailError", emailErrors.toString());
         }
@@ -113,8 +110,28 @@ public class EcommerceAppController {
     }
 
     @GetMapping("/forgetpasswordpage")
-    public String ForgetPasswordPage() {
+    public String forgetPasswordPage(@RequestParam("email") String rEmail , Model model) {
+        EcommerceAppBean ecom = userDao.getUserByEmail(rEmail);
+        model.addAttribute("ecom", ecom);
         return "Forgetpassword";
+    }
+    
+
+    @PostMapping("/forgetpassword")
+    public String ForgetPassword(EcommerceAppBean ecom , Model model) {
+        System.out.println("Entering forgot password");
+        String passwordError = validator.passwordValidation(ecom.getNewpass(), model);
+        String cpasswordError = validator.cpassValidation(ecom.getNewpass() , ecom.getConfirmnewpass() , model);
+        System.out.println(ecom.getNewpass());
+        System.out.println(ecom.getEmail());
+        model.addAttribute("ecom", ecom);
+        if(!passwordError.isEmpty() || !cpasswordError.isEmpty()){
+            return "Forgetpassword";
+        } else {
+            ecom.setPassword(encoder.encode(ecom.getNewpass()));
+            userDao.updatePassword(ecom);
+            return "Login";
+        }
     }
 
 }

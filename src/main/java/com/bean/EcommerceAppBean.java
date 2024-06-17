@@ -12,5 +12,8 @@ public class EcommerceAppBean {
     String confirmpassword;
     String gender;
     String role;
+
+    String newpass;
+    String confirmnewpass;
     
 }
