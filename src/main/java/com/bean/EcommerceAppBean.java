@@ -15,5 +15,5 @@ public class EcommerceAppBean {
 
     String newpass;
     String confirmnewpass;
-    
+    String otp;
 }

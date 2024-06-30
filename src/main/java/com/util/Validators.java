@@ -64,4 +64,15 @@ public class Validators {
         return cpassError;
     }
 
+    public String otpValidation(String oldOtp , String newOtp , Model model){
+        String otpError = "";
+        if(newOtp == null || newOtp.trim().length() == 0) {
+            otpError = "Please enter Otp";
+        } else if (newOtp.equals(oldOtp) == false) {
+            otpError = "Invalid Otp";
+        }
+        model.addAttribute("otpError",otpError);
+        return otpError;
+    }
+
 }

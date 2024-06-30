@@ -1,6 +1,8 @@
 package com.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bean.EcommerceAppBean;
 import com.dao.UserDao;
 import com.util.Validators;
+
+import jakarta.servlet.http.HttpSession;
+
+import com.service.OtpService;
 
 @Controller
 public class EcommerceAppController {
@@ -23,6 +29,12 @@ public class EcommerceAppController {
 
     @Autowired
     BCryptPasswordEncoder encoder;
+
+    @Autowired
+    OtpService otpService;
+
+    @Autowired
+    JavaMailSender sender;
 
     @GetMapping("/homepage")
     public String HomePage() {
@@ -67,7 +79,7 @@ public class EcommerceAppController {
         StringBuilder emailErrors = new StringBuilder();
         StringBuilder passwordErrors = new StringBuilder();
         boolean authenticateStatus = true;
-
+        EcommerceAppBean dbUser = null;
         if (rEmail == null || rEmail.trim().length() == 0) {
             emailErrors.append("Please enter email");
             authenticateStatus = false;
@@ -76,9 +88,8 @@ public class EcommerceAppController {
             passwordErrors.append("Please enter password");
             authenticateStatus = false;
         }
-
         if (authenticateStatus) {
-            EcommerceAppBean dbUser = userDao.getUserByEmail(rEmail);
+            dbUser = userDao.getUserByEmail(rEmail);
             if (dbUser == null) {
                 emailErrors.append("Email doesn't exist<br>");
                 authenticateStatus = false;
@@ -97,40 +108,88 @@ public class EcommerceAppController {
         if (!passwordErrors.toString().isEmpty()) {
             model.addAttribute("passwordError", passwordErrors.toString());
         }
-
         model.addAttribute("rEmail", rEmail);
         model.addAttribute("rPassword", rPassword);
-
         // Redirect based on authentication status
         if (authenticateStatus) {
-            return "Home";
+            if (dbUser.getRole().equalsIgnoreCase("admin")) {
+                return "redirect:/admindashboard";
+            } else {
+                return "redirect:/customerdashboard";
+            }
         } else {
             return "Login";
         }
     }
 
-    @GetMapping("/forgetpasswordpage")
-    public String forgetPasswordPage(@RequestParam("email") String rEmail , Model model) {
-        EcommerceAppBean ecom = userDao.getUserByEmail(rEmail);
-        model.addAttribute("ecom", ecom);
-        return "Forgetpassword";
+    @GetMapping("/sendotppage")
+    public String sendotpPage() {
+        return "SendOtp";
     }
-    
+
+    @PostMapping("/sendotp")
+    public String sendotp(@RequestParam("email") String rEmail, Model model, HttpSession session) {
+        StringBuilder emailErrors = new StringBuilder();
+        boolean found = true;
+        if (rEmail == null || rEmail.trim().length() == 0) {
+            emailErrors.append("Please enter email");
+            found = false;
+        }
+        if (found) {
+            EcommerceAppBean dbUser = userDao.getUserByEmail(rEmail);
+            if (dbUser == null) {
+                emailErrors.append("Email doesn't exist<br>");
+                found = false;
+            } else {
+                String otp = otpService.getOtp();
+                System.out.println("Otp: " + otp);
+
+                SimpleMailMessage message = new SimpleMailMessage();
+                message.setFrom("noreplyonthisemail7@gmail.com");
+                message.setTo(rEmail);
+                message.setSubject("Your OTP Code");
+                message.setText("Your OTP code is : " + otp);
+                sender.send(message);
+                session.setAttribute("genratedOtp", otp);
+            }
+        }
+
+        if (!emailErrors.toString().isEmpty()) {
+            model.addAttribute("emailError", emailErrors.toString());
+        }
+        model.addAttribute("rEmail", rEmail);
+        if (found) {
+            return "Forgetpassword";
+        } else {
+            return "SendOtp";
+        }
+    }
 
     @PostMapping("/forgetpassword")
-    public String ForgetPassword(EcommerceAppBean ecom , Model model) {
-        System.out.println("Entering forgot password");
+    public String ForgetPassword(EcommerceAppBean ecom, Model model, HttpSession session) {
+
+        String emailError = validator.emailValidation(ecom.getEmail(), model);
         String passwordError = validator.passwordValidation(ecom.getNewpass(), model);
-        String cpasswordError = validator.cpassValidation(ecom.getNewpass() , ecom.getConfirmnewpass() , model);
-        System.out.println(ecom.getNewpass());
-        System.out.println(ecom.getEmail());
+        String cpasswordError = validator.cpassValidation(ecom.getNewpass(), ecom.getConfirmnewpass(), model);
+
+        String genratedOtp = (String) session.getAttribute("genratedOtp");
+        String otpError = validator.otpValidation(genratedOtp, ecom.getOtp(), model);
+
         model.addAttribute("ecom", ecom);
-        if(!passwordError.isEmpty() || !cpasswordError.isEmpty()){
+
+        if (!emailError.isEmpty() || !passwordError.isEmpty() || !cpasswordError.isEmpty() || !otpError.isEmpty()) {
             return "Forgetpassword";
         } else {
             ecom.setPassword(encoder.encode(ecom.getNewpass()));
             userDao.updatePassword(ecom);
+            session.removeAttribute("generatedOtp");
             return "Login";
         }
     }
+
+    @GetMapping("/logout")
+    public String logOut() {
+        return "redirect:/loginpage";
+    }
+
 }

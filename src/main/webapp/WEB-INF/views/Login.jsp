@@ -78,7 +78,7 @@
                     </div>
                     <div class="fpass">
                         <p>Forgot Password ?</p>
-                        <a href="forgetpasswordpage?email=${rEmail}">Click here to reset</a>
+                        <a href="sendotppage">Click here to reset</a>
                     </div>
 
                     <span class="success-details" style="color : 'green';">${success}</span>

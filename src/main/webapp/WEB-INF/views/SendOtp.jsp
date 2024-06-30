@@ -7,7 +7,7 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forgetpassword.css">
-            <title>Forgot Password</title>
+            <title>Search Email</title>
         </head>
 
         <body>
@@ -57,34 +57,18 @@
             <div class="container">
 
                 <div class="title"><span id="element"></span></div>
-                <form action="forgetpassword" method="post">
+                <form action="sendotp" method="post">
 
                     <div class="user-details">
                         <div class="input-box">
                             <span class="details">Email-Id</span>
-                            <input type="text" placeholder="Enter your email" name="email" value="${ecom.email}">
+                            <input type="text" placeholder="Enter your email" name="email" value="${rEmail}">
                             <span class="error-details">${emailError}</span>
-                        </div>
-                        <div class="input-box">
-                            <span class="details">New Password</span>
-                            <input type="text" placeholder="Enter your new password" name="newpass" value="${ecom.newpass}">
-                            <span class="error-details">${passError}</span>
-                        </div>
-
-                        <div class="input-box">
-                            <span class="details">Confirm new password</span>
-                            <input type="text" placeholder="Confirm your new password" name="confirmnewpass" value="${ecom.confirmnewpass}">
-                            <span class="error-details">${cpassError}</span>
-                        </div>
-
-                        <div class="input-box">
-                            <span class="details">Enter OTP</span>
-                            <input type="text" placeholder="Enter your otp" name="otp" value="${ecom.otp}">
-                            <span class="error-details">${otpError}</span>
+                            <input type="hidden" name="oldotp" value="${oldOtp}">
                         </div>
                     </div>
                     <div class="button">
-                        <input type="submit" value="Change Password">
+                        <input type="submit" value="Search">
                     </div>
 
                 </form>
