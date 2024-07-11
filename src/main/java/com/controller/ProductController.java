@@ -1,15 +1,19 @@
 package com.controller;
 
 import java.io.File;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bean.ProductBean;
 import com.dao.ProductDao;
+
 
 @Controller
 public class ProductController {
@@ -40,8 +44,25 @@ public class ProductController {
     }
 
     @GetMapping("/listproductspage")
-    public String listProductsPage() {
-        return "ListProduct";
+    public String listProductsPage(Model model) {
+        List<ProductBean> products = pDao.getAllProducts();
+        model.addAttribute("products", products);
+        return "ListProducts";
     }
+
+    @GetMapping("/deleteproduct")
+    public String deleteProduct(@RequestParam("id") Integer id) {
+        pDao.deleteProduct(id);
+        return "redirect:/listproductspage";
+    }
+
+    @GetMapping("/viewproduct")
+    public String viewProduct(@RequestParam("id") Integer id , Model model) {
+        ProductBean product = pDao.getProductId(id);
+        model.addAttribute("product", product);
+        return "ViewProduct";
+    }
+    
+    
 
 }

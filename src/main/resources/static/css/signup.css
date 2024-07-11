@@ -2,10 +2,9 @@
 
 
 :root {
-    --bg-clr-body: #032030;
-    --bg-clr-navbar: #022B42;
-    --font-clr: white;
-    --btn-bg-clr: #004D74;
+    --bg-clr-body : #f7f9f9;
+    --bg-clr-navbar : #343a40;
+    --font-clr : white;
     --border-clr: #006DA4;
 }
 

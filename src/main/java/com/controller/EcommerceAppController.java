@@ -75,7 +75,7 @@ public class EcommerceAppController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("email") String rEmail, @RequestParam("password") String rPassword, Model model) {
+    public String login(@RequestParam("email") String rEmail, @RequestParam("password") String rPassword, Model model, HttpSession session){
         StringBuilder emailErrors = new StringBuilder();
         StringBuilder passwordErrors = new StringBuilder();
         boolean authenticateStatus = true;
@@ -112,6 +112,7 @@ public class EcommerceAppController {
         model.addAttribute("rPassword", rPassword);
         // Redirect based on authentication status
         if (authenticateStatus) {
+            session.setAttribute("user", dbUser);
             if (dbUser.getRole().equalsIgnoreCase("admin")) {
                 return "redirect:/admindashboard";
             } else {
