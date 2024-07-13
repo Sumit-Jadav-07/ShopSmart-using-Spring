@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --bg-clr-body : #f7f9f9;
+    --bg-clr-navbar : #343a40;
+    --font-clr : white;
+    --border-clr: #006DA4;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Fira Sans", sans-serif;    font-weight: 700;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-clr-body);
+    letter-spacing: 1px;
+}
+
+.navbar{
+    height: 10%;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--bg-clr-navbar);
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--font-clr);
+}
+
+.navbar .logo{
+    height: 100%;
+    width: 25%;
+    
+    /* Center the logo */   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.navbar .list-items{
+    height: 100%;
+    width: 50%;
+    
+    /* Center the list-items */   
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navbar .login{
+    height: 100%;
+    width: 25%;
+    
+    /* Center the login */   
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navbar .login a{
+    padding: 5px 10px;
+    /* border: 2px solid var(--border-clr); */
+    border-radius: 10px;
+    transition: ease-in-out all .3s;
+}
+
+.navbar .login a:hover{
+    padding: 7px 12px;
+    /* border: 2px solid var(--border-clr); */
+    border-radius: 10px;
+    color: black;
+    background-color: #adb5bd;
+}
+
+svg{
+    fill: rgb(255, 255, 255);
+}
+
+.hamburger-menu{
+    margin-right: 1em;
+    display: none;
+}
+
+/* side-nabar css starts */
+
+.side-navbar{
+    height: 100%;
+    width: 225px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+    background-color: var(--bg-clr-navbar);
+    backdrop-filter:  blur(10px);
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+}
+
+.side-navbar a {
+    width: 100%;
+    padding: 1rem;
+    margin-left: 0px;
+    padding-left: 14%;
+}
+
+.side-navbar a:hover{
+    background-color: #0505052e;
+}
+.main_container{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #006DA4; */
+}
+
+.main_container .form_container{
+    height: fit-content;
+    width: 600px;
+    background-color: #e7e7e89e;
+    border: 4px solid #022b421c;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+}
+
+.main_container .form_container .title{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    padding: 3%;
+    background-color: var(--bg-clr-navbar);
+    color: #adb5bd;
+}
+
+.main_container .form_container form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main_container .form_container form .product-details{
+    display: flex;
+    flex-direction: column;
+    margin: 3% 7% 3% 7%;
+}
+
+.main_container .form_container form .product-details .input-box{
+    background: none;
+    border: none;
+}
+
+.main_container .form_container form .product-details .input-box input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    background: none;
+    border: 2px solid rgba(0, 0, 0, 0.301);
+    margin-bottom: 7px;
+}
+
+.main_container .form_container form .product-details .input-box .details{
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+.main_container .form_container form .button{
+    margin: 3% 7% 3% 7%;
+    text-align: center;
+}
+
+.main_container .form_container form .button input{
+    height: 45px;
+    width: 100%;
+    border-radius: 14px;
+}
+
+.input-box {
+    margin-bottom: 15px;
+}
+
+@media(max-width : 770px){
+    .navbar .list-items{
+        display: none;
+    }
+
+    .navbar .login{
+        display: none;
+    }
+
+    .navbar .hamburger-menu{
+        fill: white;
+        display: block;
+    }
+}

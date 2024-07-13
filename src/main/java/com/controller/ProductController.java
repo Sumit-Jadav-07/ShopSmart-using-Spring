@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bean.ProductBean;
 import com.dao.ProductDao;
 
-
 @Controller
 public class ProductController {
 
@@ -29,17 +28,19 @@ public class ProductController {
     @PostMapping("addProduct")
     public String addProduct(ProductBean pBean) {
 
-        String productImagePath = "D:\\Royal\\Spring\\EcommerceApp\\src\\main\\webapp\\images\\products\\";
-        try {
-            File file = new File(productImagePath, pBean.getProductImage().getOriginalFilename());
-            byte b[] = pBean.getProductImage().getBytes(); // Copy image into bytes
-            FileUtils.writeByteArrayToFile(file, b); // Copy bytes into image
+        if (pBean.getProductImage() == null) {
+            String productImagePath = "D:\\Royal\\Spring\\EcommerceApp\\src\\main\\webapp\\images\\products\\";
+            try {
+                File file = new File(productImagePath, pBean.getProductImage().getOriginalFilename());
+                byte b[] = pBean.getProductImage().getBytes(); // Copy image into bytes
+                FileUtils.writeByteArrayToFile(file, b); // Copy bytes into image
 
-            pBean.setProductImagePath("images/products/" + pBean.getProductImage().getOriginalFilename());
-            pDao.addProduct(pBean);
-        } catch (Exception e) {
-            e.printStackTrace();
+                pBean.setProductImagePath("images/products/" + pBean.getProductImage().getOriginalFilename());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+        pDao.addProduct(pBean);
         return "redirect:/listproductspage";
     }
 
@@ -57,12 +58,51 @@ public class ProductController {
     }
 
     @GetMapping("/viewproduct")
-    public String viewProduct(@RequestParam("id") Integer id , Model model) {
+    public String viewProduct(@RequestParam("id") Integer id, Model model) {
         ProductBean product = pDao.getProductId(id);
         model.addAttribute("product", product);
         return "ViewProduct";
     }
-    
-    
+
+    @GetMapping("/editproductpage")
+    public String editProductPage(@RequestParam("id") Integer id, Model model) {
+        ProductBean product = pDao.getProductId(id);
+        model.addAttribute("product", product);
+        return "EditProduct";
+    }
+
+    @PostMapping("/editproduct")
+    public String editProduct(@RequestParam("id") Integer id, ProductBean pBean) {
+
+        ProductBean existingProduct = pDao.getProductId(id);
+
+        if(pBean.getProductImage() != null && !pBean.getProductImage().isEmpty()){
+            // Delete the existing image file if exists
+            String existingImagePath = "D:\\Royal\\Spring\\EcommerceApp\\src\\main\\webapp\\" + existingProduct.getProductImagePath();
+            File existingFile = new File(existingImagePath);
+            if(existingFile.exists()){
+                existingFile.delete();
+            }
+
+            // Save the new image file
+            String productImagePath = "D:\\Royal\\Spring\\EcommerceApp\\src\\main\\webapp\\images\\products\\";
+            try{
+                File newFile = new File(productImagePath , pBean.getProductImage().getOriginalFilename());
+                byte[] nb = pBean.getProductImage().getBytes();
+                FileUtils.writeByteArrayToFile(newFile, nb);
+
+                pBean.setProductImagePath("images/products/" + pBean.getProductImage().getOriginalFilename());
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        } else {
+            // If no new image is provided, keep the existing image path
+            pBean.setProductImagePath(existingProduct.getProductImagePath());
+        }
+        
+        pDao.editProduct(pBean);
+        
+        return "redirect:/listproductspage";
+    }
 
 }

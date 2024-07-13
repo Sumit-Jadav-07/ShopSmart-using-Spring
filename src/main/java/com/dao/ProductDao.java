@@ -28,9 +28,21 @@ public class ProductDao {
 		stmt.update("delete from productsdetails where id = ?", id);
 	}
     
-	public ProductBean getProductId(Integer productId){
-		ProductBean bean = stmt.queryForObject("select * from productsdetails where id = ?", new BeanPropertyRowMapper<>(ProductBean.class), new Object[]{productId});
+	public ProductBean getProductId(Integer id){
+		ProductBean bean = stmt.queryForObject("select * from productsdetails where id = ?", new BeanPropertyRowMapper<>(ProductBean.class), new Object[]{id});
 		return bean;
+	}
+
+	public void editProduct(ProductBean product){
+
+		String sql = "UPDATE productsdetails SET product_name = ?, category = ?, price = ?, quantity = ?, product_image_path = ? WHERE id = ?";
+        
+		try{
+			stmt.update(sql, product.getProductName(), product.getCategory(), product.getPrice(), product.getQuantity(), product.getProductImagePath(), product.getId());	
+		} catch (Exception e){ 
+			e.printStackTrace();
+		}
+ 
 	}
 
 }
