@@ -46,8 +46,8 @@
             <a href="">Products</a>
             <a href="">Blog</a>
 
-            <a href="signuppage">Sign Up</a>
-            <a href="loginpage">Log In</a>
+            <!-- <a href="signuppage">Sign Up</a> -->
+            <a href="logout">Log Out</a>
           </nav>
         </nav>
 
@@ -76,7 +76,7 @@
                                 <img src="<%= p.getProductImagePath() %>" alt="">
                               <% } %>
                               <ul>
-                                <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                                <li><a href="addtocart?id=<%= p.getId() %>"><i class="fas fa-shopping-cart"></i></a></li>
                                 <li><a href="#"><i class="fas fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fas fa-plus"></i></a></li>
                                 <li><a href="viewproduct?id=<%= p.getId() %>"><i class="fas fa-eye"></i></a></li>

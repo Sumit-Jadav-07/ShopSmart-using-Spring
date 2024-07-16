@@ -189,7 +189,8 @@ public class EcommerceAppController {
     }
 
     @GetMapping("/logout")
-    public String logOut() {
+    public String logout(HttpSession session) {
+        session.invalidate();
         return "redirect:/loginpage";
     }
 
