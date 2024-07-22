@@ -59,7 +59,7 @@
                     <span>Category : ${product.category}</span>
                     <span>Price : ${product.price}</span>
                     <span>Quantity : ${product.quantity}</span>
-                    <a href="listproductspage">Back to Product List</a>
+                    <a href="customerdashboard">Back to Product List</a>
                 </div>
 
                 <div class="product-image">

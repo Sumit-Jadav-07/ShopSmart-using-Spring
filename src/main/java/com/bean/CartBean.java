@@ -7,4 +7,5 @@ public class CartBean {
     Integer cartId;
     Integer userId;
     Integer productId;
+    Integer quantity;
 }

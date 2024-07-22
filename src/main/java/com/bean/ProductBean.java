@@ -9,7 +9,7 @@ import lombok.Data;
 @Component
 public class ProductBean {
     
-	Integer id;
+	Integer productId;
 	String productName;
     String category;
     Float price;

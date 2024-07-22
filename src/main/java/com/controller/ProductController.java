@@ -52,27 +52,27 @@ public class ProductController {
     }
 
     @GetMapping("/deleteproduct")
-    public String deleteProduct(@RequestParam("id") Integer id) {
+    public String deleteProduct(@RequestParam("productId") Integer id) {
         pDao.deleteProduct(id);
         return "redirect:/listproductspage";
     }
 
     @GetMapping("/viewproduct")
-    public String viewProduct(@RequestParam("id") Integer id, Model model) {
+    public String viewProduct(@RequestParam("productId") Integer id, Model model) {
         ProductBean product = pDao.getProductId(id);
         model.addAttribute("product", product);
         return "ViewProduct";
     }
 
     @GetMapping("/editproductpage")
-    public String editProductPage(@RequestParam("id") Integer id, Model model) {
+    public String editProductPage(@RequestParam("productId") Integer id, Model model) {
         ProductBean product = pDao.getProductId(id);
         model.addAttribute("product", product);
         return "EditProduct";
     }
 
     @PostMapping("/editproduct")
-    public String editProduct(@RequestParam("id") Integer id, ProductBean pBean) {
+    public String editProduct(@RequestParam("productId") Integer id, ProductBean pBean) {
 
         ProductBean existingProduct = pDao.getProductId(id);
 

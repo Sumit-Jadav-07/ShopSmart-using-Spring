@@ -25,11 +25,11 @@ public class ProductDao {
 	}
 
 	public void deleteProduct(Integer id){
-		stmt.update("delete from productsdetails where id = ?", id);
+		stmt.update("delete from productsdetails where productId = ?", id);
 	}
     
 	public ProductBean getProductId(Integer id){
-		ProductBean bean = stmt.queryForObject("select * from productsdetails where id = ?", new BeanPropertyRowMapper<>(ProductBean.class), new Object[]{id});
+		ProductBean bean = stmt.queryForObject("select * from productsdetails where productId = ?", new BeanPropertyRowMapper<>(ProductBean.class), new Object[]{id});
 		return bean;
 	}
 
@@ -38,7 +38,7 @@ public class ProductDao {
 		String sql = "UPDATE productsdetails SET product_name = ?, category = ?, price = ?, quantity = ?, product_image_path = ? WHERE id = ?";
         
 		try{
-			stmt.update(sql, product.getProductName(), product.getCategory(), product.getPrice(), product.getQuantity(), product.getProductImagePath(), product.getId());	
+			stmt.update(sql, product.getProductName(), product.getCategory(), product.getPrice(), product.getQuantity(), product.getProductImagePath(), product.getProductId());	
 		} catch (Exception e){ 
 			e.printStackTrace();
 		}

@@ -14,6 +14,8 @@ import com.bean.EcommerceAppBean;
 import com.dao.UserDao;
 import com.util.Validators;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import com.service.OtpService;
@@ -75,44 +77,57 @@ public class EcommerceAppController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam("email") String rEmail, @RequestParam("password") String rPassword, Model model, HttpSession session){
+    public String login(@RequestParam("email") String rEmail, @RequestParam("password") String rPassword, Model model,
+            HttpServletResponse response) {
+        // StringBuilder to store error messages
         StringBuilder emailErrors = new StringBuilder();
         StringBuilder passwordErrors = new StringBuilder();
         boolean authenticateStatus = true;
         EcommerceAppBean dbUser = null;
+        // Validate email
         if (rEmail == null || rEmail.trim().length() == 0) {
             emailErrors.append("Please enter email");
             authenticateStatus = false;
         }
+        // Validate password
         if (rPassword == null || rPassword.trim().length() == 0) {
             passwordErrors.append("Please enter password");
             authenticateStatus = false;
         }
+        // Authenticate user
         if (authenticateStatus) {
             dbUser = userDao.getUserByEmail(rEmail);
+            // Check if user exists
             if (dbUser == null) {
                 emailErrors.append("Email doesn't exist<br>");
                 authenticateStatus = false;
             } else {
                 String encryptedPassword = dbUser.getPassword();
+                // Check if password is correct
                 if (!encoder.matches(rPassword, encryptedPassword)) {
                     passwordErrors.append("Wrong password<br>");
                     authenticateStatus = false;
                 }
             }
         }
-
+        // Add error messages to the model
         if (!emailErrors.toString().isEmpty()) {
             model.addAttribute("emailError", emailErrors.toString());
         }
         if (!passwordErrors.toString().isEmpty()) {
             model.addAttribute("passwordError", passwordErrors.toString());
         }
+        // Add email and password to the model
         model.addAttribute("rEmail", rEmail);
         model.addAttribute("rPassword", rPassword);
         // Redirect based on authentication status
         if (authenticateStatus) {
-            session.setAttribute("user", dbUser);
+            // session.setAttribute("user", dbUser);
+            Cookie cookie = new Cookie("user", dbUser.getId().toString());
+            cookie.setPath("/");
+            cookie.setHttpOnly(true);
+            cookie.setMaxAge(15 * 24 * 60 * 60);
+            response.addCookie(cookie);
             if (dbUser.getRole().equalsIgnoreCase("admin")) {
                 return "redirect:/admindashboard";
             } else {

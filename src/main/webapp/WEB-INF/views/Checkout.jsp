@@ -7,78 +7,8 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forgetpassword.css">
-            <title>Search Email</title>
+            <title>Checkout</title>
         </head>
-        <style>
-            /* Global styles */
-            body {
-                margin: 0;
-                padding: 0;
-                font-family: sans-serif;
-                /* Choose a readable font family */
-                background-color: #f0f0f0;
-                /* Light gray background */
-                color: #333;
-                /* Dark text for contrast */
-            }
-
-            /* Header styles */
-            header {
-                display: flex;
-                /* Arrange header elements horizontally */
-                justify-content: space-between;
-                /* Space elements evenly */
-                align-items: center;
-                /* Align vertically */
-                padding: 1rem;
-                /* Add some padding for breathing room */
-                background-color: #fff;
-                /* White background for header */
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-                /* Subtle shadow */
-            }
-
-            h1 {
-                font-size: 1.5rem;
-                /* Adjust heading size as needed */
-                margin: 0;
-                /* Remove default margin */
-            }
-
-            /* Navigation styles */
-            nav {
-                display: flex;
-                list-style: none;
-                /* Remove bullet points for links */
-                padding: 0;
-                margin: 0;
-            }
-
-            nav a {
-                padding: 0.5rem 1rem;
-                /* Add some padding for clickable area */
-                text-decoration: none;
-                /* Remove underline */
-                color: inherit;
-                /* Use the same color as the body text */
-                transition: color 0.2s ease-in-out;
-                /* Smooth color transition on hover */
-            }
-
-            nav a:hover {
-                color: #007bff;
-                /* Blue highlight on hover */
-            }
-
-            /* Content area styles */
-            main {
-                padding: 1rem;
-                margin: 0 auto;
-                /* Center content horizontally */
-                max-width: 800px;
-                /* Limit content width for better responsiveness */
-            }
-        </style>
 
         <body>
 
@@ -126,22 +56,32 @@
 
             <div class="container">
 
-                <div class="title"><span id="element"></span></div>
-                <form action="sendotp" method="post">
+                <% String totalPriceStr = request.getParameter("totalPrice"); %>
 
-                    <div class="user-details">
-                        <div class="input-box">
-                            <span class="details">Email-Id</span>
-                            <input type="text" placeholder="Enter your email" name="email" value="${rEmail}">
-                            <span class="error-details">${emailError}</span>
-                            <input type="hidden" name="oldotp" value="${oldOtp}">
+                    <div class="title"><span id="element"></span></div>
+                    <form action="checkout" method="post">
+
+                        <input type="hidden" name="totalPrice" value="<%= totalPriceStr %>">
+
+                        <div class="user-details">
+                            <div class="input-box">
+                                <span class="details">Enter Credit card number</span>
+                                <input type="text" placeholder="Enter your credit card number(16 Digits)"
+                                    name="cardnumber" value="">
+                                <span class="error-details">${passError}</span>
+                            </div>
+
+                            <div class="input-box">
+                                <span class="details">Enter Expiry Date</span>
+                                <input type="text" id="expiryDate" placeholder="MM-YY" name="expirydate" value="">
+                                <span class="error-details">${cpassError}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="button">
-                        <input type="submit" value="Search">
-                    </div>
+                        <div class="button">
+                            <input type="submit" value="Checkout" onclick="getFormattedDate()">
+                        </div>
 
-                </form>
+                    </form>
 
             </div>
 

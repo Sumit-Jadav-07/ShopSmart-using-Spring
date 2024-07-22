@@ -62,6 +62,7 @@
                         <div class="header">
                           <h3>Featured Product</h3>
                           <h2>Popular Products</h2>
+                          <h3><a href="mycartpage">My Cart</a></h3>
                         </div>
                       </div>
                     </div>
@@ -70,17 +71,19 @@
                         <div class="col-md-6 col-lg-4 col-xl-3">
                           <div id="product-1" class="single-product">
                             <div class="part-1">
-                              <% if (p.getProductImagePath() == null || p.getProductImagePath().length() == 0) { %>
+                              <% if (p.getProductImagePath()==null || p.getProductImagePath().length()==0) { %>
                                 <img src="images/noImageAvailable.png" alt="">
-                              <% } else { %>
-                                <img src="<%= p.getProductImagePath() %>" alt="">
-                              <% } %>
-                              <ul>
-                                <li><a href="addtocart?id=<%= p.getId() %>"><i class="fas fa-shopping-cart"></i></a></li>
-                                <li><a href="#"><i class="fas fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fas fa-plus"></i></a></li>
-                                <li><a href="viewproduct?id=<%= p.getId() %>"><i class="fas fa-eye"></i></a></li>
-                              </ul>
+                                <% } else { %>
+                                  <img src="<%= p.getProductImagePath() %>" alt="">
+                                  <% } %>
+                                    <ul>
+                                      <li><a href="addtocart?productId=<%= p.getProductId() %>"><i
+                                            class="fas fa-shopping-cart"></i></a></li>
+                                      <li><a href="#"><i class="fas fa-heart"></i></a></li>
+                                      <li><a href="#"><i class="fas fa-plus"></i></a></li>
+                                      <li><a href="viewproduct?productId=<%= p.getProductId() %>"><i
+                                            class="fas fa-eye"></i></a></li>
+                                    </ul>
                             </div>
                             <div class="part-2">
                               <h3 class="product-title">
@@ -95,7 +98,7 @@
                             </div>
                           </div>
                         </div>
-                      <% } %>
+                        <% } %>
                     </div>
                   </div>
                 </section>
