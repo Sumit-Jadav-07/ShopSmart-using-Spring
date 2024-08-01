@@ -84,9 +84,9 @@
                                             </td>
                                             <td>
                                                 <div class="action-links">
-                                                    <a href="viewproduct?id=<%= p.getId() %>">View</a> |
-                                                    <a href="editproductpage?id=<%= p.getId() %>">Edit</a> |
-                                                    <a href="deleteproduct?id=<%= p.getId() %>" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                                                    <a href="viewproduct?productId=<%= p.getProductId() %>">View</a> |
+                                                    <a href="editproductpage?productId=<%= p.getProductId() %>">Edit</a> |
+                                                    <a href="deleteproduct?productId=<%= p.getProductId() %>" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>

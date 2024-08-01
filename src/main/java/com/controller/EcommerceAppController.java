@@ -204,8 +204,11 @@ public class EcommerceAppController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
+    public String logout(HttpServletResponse response) {
+        Cookie cookie = new Cookie("user", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
         return "redirect:/loginpage";
     }
 

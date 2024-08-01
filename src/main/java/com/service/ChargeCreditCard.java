@@ -15,8 +15,8 @@ import net.authorize.api.controller.base.ApiOperationBase;
 @Service
 public class ChargeCreditCard {
     public static ANetApiResponse run(PaymentBean bean) {
-        String apiLoginId = "bizdev05";
-        String transactionKey = "4kJd237rZu59qAZd";
+        String apiLoginId = "66r3YfWx";
+        String transactionKey = "3QT2v5VPy4666mUK";
         ApiOperationBase.setEnvironment(Environment.SANDBOX);
 
         MerchantAuthenticationType merchantAuthenticationType = new MerchantAuthenticationType();

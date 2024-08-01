@@ -68,11 +68,10 @@ public class CartController {
                     break;
                 }
             }
-        }
-
+        } 
         if (userIdStr == null) {
             // Handle the case when the cookie is not found
-            return "redirect:/login"; // or any appropriate error page
+            return "redirect:/loginpage"; // or any appropriate error page
         }
 
         Integer userId = Integer.parseInt(userIdStr);

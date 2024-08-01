@@ -53,7 +53,7 @@
                 </div>
                 <form action="editproduct" method="post" enctype="multipart/form-data">
                     <div class="product-details">
-                        <input type="hidden" name="id" value="${product.id}">
+                        <input type="hidden" name="productId" value="${product.productId}">
 
                         <div id="productNameInput" class="input-box">
                             <span class="details">Product Name</span>
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="button">
-                        <input type="submit" value="Add Product">
+                        <input type="submit" value="Edit Product">
                     </div>
                 </form>
 

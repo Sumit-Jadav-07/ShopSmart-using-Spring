@@ -21,7 +21,7 @@
         </div>
         <div class="links">
             <a href="mycartpage">My Cart</a>
-            <a href="logoute">Log out</a>
+            <a href="logout">Log out</a>
         </div>
     </nav>
 

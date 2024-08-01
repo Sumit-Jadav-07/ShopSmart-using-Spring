@@ -73,7 +73,7 @@
 
                             <div class="input-box">
                                 <span class="details">Enter Expiry Date</span>
-                                <input type="text" id="expiryDate" placeholder="MM-YY" name="expirydate" value="">
+                                <input type="text" id="expiryDate" placeholder="MMYY" name="expiryDate" value="">
                                 <span class="error-details">${cpassError}</span>
                             </div>
                         </div>

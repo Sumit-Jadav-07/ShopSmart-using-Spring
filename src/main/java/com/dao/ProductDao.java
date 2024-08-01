@@ -32,17 +32,40 @@ public class ProductDao {
 		ProductBean bean = stmt.queryForObject("select * from productsdetails where productId = ?", new BeanPropertyRowMapper<>(ProductBean.class), new Object[]{id});
 		return bean;
 	}
-
-	public void editProduct(ProductBean product){
-
-		String sql = "UPDATE productsdetails SET product_name = ?, category = ?, price = ?, quantity = ?, product_image_path = ? WHERE id = ?";
-        
-		try{
-			stmt.update(sql, product.getProductName(), product.getCategory(), product.getPrice(), product.getQuantity(), product.getProductImagePath(), product.getProductId());	
-		} catch (Exception e){ 
+	public void editProduct(ProductBean product) {
+		// Retrieve the existing product details
+		String exProduct = "SELECT * FROM productsdetails WHERE productId = ?";
+		ProductBean existingProduct = stmt.queryForObject(exProduct, new BeanPropertyRowMapper<>(ProductBean.class), product.getProductId());
+	
+		// Debug statements
+		System.out.println("Existing Product Name: " + existingProduct.getProductName());
+		System.out.println("Existing Product Category: " + existingProduct.getCategory());
+	
+		if (product.getProductName() == null) {
+			product.setProductName(existingProduct.getProductName());
+		}
+		if (product.getCategory() == null) {
+			product.setCategory(existingProduct.getCategory());
+		}
+		if (product.getPrice() == null) {
+			product.setPrice(existingProduct.getPrice());
+		}
+		if (product.getQuantity() == null) {
+			product.setQuantity(existingProduct.getQuantity());
+		}
+	
+		// Debug statements
+		System.out.println("Updated Product Name: " + product.getProductName());
+		System.out.println("Updated Product Category: " + product.getCategory());
+	
+		String sql = "UPDATE productsdetails SET product_name = ?, category = ?, price = ?, quantity = ?, product_image_path = ? WHERE productId = ?";
+	
+		try {
+			stmt.update(sql, product.getProductName(), product.getCategory(), product.getPrice(), product.getQuantity(), product.getProductImagePath(), product.getProductId());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
- 
 	}
-
+	
+	
 }
