@@ -13,12 +13,16 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #000000;
-    color: rgb(135, 135, 135);
+    background-color: #2C3E50;
+    color: rgb(255, 255, 255);
 }
 
 nav .logo {
     margin-left: 2%;
+} 
+
+.logo h1{
+    font-size: 1.5rem;
 }
 
 nav .links {
@@ -27,7 +31,7 @@ nav .links {
 
 nav .links a {
     text-decoration: none;
-    color: rgb(135, 135, 135);
+    color: rgb(255, 255, 255);
     margin-left: 20px;
 }
 
@@ -36,21 +40,6 @@ nav .links a {
     width: 100%;
     display: flex;
 }
-
-.side-dashboard{
-    background-color: #787878;
-    width: 20%;
-
-}
-
-.dashboard-section {
-    margin-bottom: 20px;
-}
-
-.dashboard-section h2 {
-    margin-top: 0;
-}
-
 ul {
     list-style-type: none;
     margin: 0;
@@ -63,8 +52,7 @@ ul li {
 
 .product-dashboard{
     height: 100%;
-    width:80%;
-    background-color: rgb(151, 150, 150);
+    width: 100%;
 }
 
 /* ======Bootstrap CSS Starts===== */
@@ -79,7 +67,7 @@ ul li {
 
 .section-products .header h3 {
     font-size: 1rem;
-    color: #fe302f;
+    color: #930000;
     font-weight: 500;
 }
 

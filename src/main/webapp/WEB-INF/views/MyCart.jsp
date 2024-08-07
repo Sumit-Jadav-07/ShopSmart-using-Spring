@@ -25,46 +25,46 @@
         <div class="cart-container">
             <%
                 List<ProductBean> products = (List<ProductBean>) request.getAttribute("products");
-                Double price = 0.0;
+                Double total_product_price = 0.0;
+                Double total_price = 0.0;
                 DecimalFormat df = new DecimalFormat("#.##");
             %>
-
             <form action="checkoutpage" method="post">
-                <div class="table-wrapper">
-                    <table>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Action</th>
-                            <th>Quantity</th>
-                        </tr>
-                        <%
-                            for (ProductBean p : products) {
-                                out.print("<tr>");
-                                out.print("<td>" + p.getProductName() + "</td>");
-                                out.print("<td style='width: 200px; height: 100px;'><img src='" + p.getProductImagePath() + "'/></td>");
-                                out.print("<td>" + p.getPrice() + "</td>");
-                                out.print("<td><a href='removecartitem?productId=" + p.getProductId() + "'>Remove</a></td>");
-                                out.print("<td>");
-                                out.print("<div class='quantity-buttons'>");
-                                out.print("<a href='decreasequantity?productId=" + p.getProductId() + "'>-</a>");
-                                out.print(p.getQuantity());
-                                out.print("<a href='increasequantity?productId=" + p.getProductId() + "'>+</a>");
-                                out.print("</div>");
-                                out.print("</td>");
-                                out.print("</tr>");
-                                price += p.getPrice() * p.getQuantity();
-                            }
-                        %>
-                    </table>
+                <%
+                    for (ProductBean p : products) {
+                        total_product_price = p.getPrice().doubleValue() * p.getQuantity();
+                        total_price += total_product_price;
+                %>
+                <div class="cart-item">
+                    <div class="cart-img">
+                        <img src="<%= p.getProductImagePath() %>" alt="" width="100px" height="100px">
+                    </div>
+                    <div class="product-details">
+                        <div class="c1">
+                            <h1><%= p.getProductName() %></h1>
+                            <a href="decreasequantity?productId=<%= p.getProductId() %>"><button type="button">-</button></a>
+                            <span><%= p.getQuantity() %></span>
+                            <a href="increasequantity?productId=<%= p.getProductId() %>"><button type="button">+</button></a>
+                        </div>
+                        <div class="price">
+                            <p>&#x20b9;<%= p.getPrice() %></p>
+                        </div>
+                    </div>
+                    <div class="product-price">
+                        <div class="c2">
+                            <a href="removecartitem?productId=<%= p.getProductId() %>"><button type="button">x</button></a>
+                            <p>&#x20b9;<%= df.format(total_product_price) %></p>
+                        </div>
+                    </div>
                 </div>
-
+                <%
+                    }
+                %>
                 <div class="price-container">
                     <div class="total-price">
-                        Total Price: <%= df.format(price) %>
+                        Total Price : &#x20b9;<%= df.format(total_price) %>
                     </div>
-                    <input type="hidden" name="totalPrice" value="<%= price %>"/>
+                    <input type="hidden" name="totalPrice" value="<%= total_price %>"/>
                     <button type="submit">Checkout</button>
                 </div>
             </form>

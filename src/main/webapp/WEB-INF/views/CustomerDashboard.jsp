@@ -13,7 +13,6 @@
     <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/customerdash.css">
 </head>
-
 <body>
     <nav>
         <div class="logo">
@@ -26,26 +25,6 @@
     </nav>
 
     <div class="main-container">
-        <div class="side-dashboard">
-            <div class="dashboard-section">
-                <h2>Account Information</h2>
-                <ul>
-                    <li>Name: ${customer.name}</li>
-                    <li>Email: ${customer.email}</li>
-                    <li>Address: ${customer.address}</li>
-                </ul>
-            </div>
-            <div class="dashboard-section">
-                <h2>Order History</h2>
-                <ul>
-                    <c:forEach items="${customer.orders}" var="order">
-                        <li>Order ID: ${order.id}</li>
-                        <li>Date: ${order.date}</li>
-                        <li>Total: ${order.total}</li>
-                    </c:forEach>
-                </ul>
-            </div>
-        </div>
         <div class="product-dashboard">
             <% List<ProductBean> products = (List<ProductBean>) request.getAttribute("products"); %>
                 <section class="section-products">

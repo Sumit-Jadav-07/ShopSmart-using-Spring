@@ -89,4 +89,75 @@ public class CartController {
         return "redirect:/mycartpage";
     }
 
+    @GetMapping("/decreasequantity")
+    public String decreaseQuantity(@RequestParam("productId") Integer productId, HttpServletRequest request) {
+        // Get the user ID from the cookie
+        Cookie[] cookies = request.getCookies();
+        String userIdStr = null;
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("user".equals(cookie.getName())) {
+                    userIdStr = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        if (userIdStr == null) {
+            // Handle the case when the cookie is not found
+            return "redirect:/loginpage"; // or any appropriate error page
+        }
+
+        Integer userId = Integer.parseInt(userIdStr);
+
+        CartBean cBean = new CartBean();
+        cBean.setProductId(productId);
+        cBean.setUserId(userId);
+
+        Integer quantity = cDao.checkExistingProduct(cBean);
+
+        if (quantity > 1) {
+            cBean.setQuantity(quantity - 1);
+            cDao.updateQuantity(cBean);
+        } else {
+            cDao.deleteCartItem(productId);
+        }
+        return "redirect:/mycartpage";
+    }
+
+    @GetMapping("/increasequantity")
+    public String increaseQuantity(@RequestParam("productId") Integer productId, HttpServletRequest request) {
+        // Get the user ID from the cookie
+        Cookie[] cookies = request.getCookies();
+        String userIdStr = null;
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("user".equals(cookie.getName())) {
+                    userIdStr = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        if (userIdStr == null) {
+            // Handle the case when the cookie is not found
+            return "redirect:/loginpage"; // or any appropriate error page
+        }
+
+        Integer userId = Integer.parseInt(userIdStr);
+
+        CartBean cBean = new CartBean();
+        cBean.setProductId(productId);
+        cBean.setUserId(userId);
+
+        Integer quantity = cDao.checkExistingProduct(cBean);
+
+        if (quantity > 1) {
+            cBean.setQuantity(quantity + 1);
+            cDao.updateQuantity(cBean);
+        } else {
+            cDao.deleteCartItem(productId);
+        }
+        return "redirect:/mycartpage";
+    }
 }
