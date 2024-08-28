@@ -13,7 +13,7 @@
 
             <nav class="navbar">
                 <div class="logo">
-                    <a href="homepage">E Commerce</a>
+                    <a href="homepage">ShopSmart</a>
                 </div>
                 <div class="list-items">
                     <a href="homepage">Home</a>
