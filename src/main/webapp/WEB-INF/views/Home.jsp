@@ -6,10 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css" />
+    <!-- Splide.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js" defer></script>
     <title>ShopSmart</title>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
             <a href="homepage">ShopSmart</a>
@@ -42,17 +44,107 @@
         </nav>
 
     </nav>
+    <nav class="mini-navbar">
+        <a href="">Mobiles</a>
+        <a href="">Smart Watch</a>
+        <a href="">Laptops</a>
+        <a href="">Cameras</a>
+    </nav>
     <div class="main-content">
+        <section class="section">
+            <div class="sec-heading">
+                <h1>Top Selling</h1>
+            </div>
+            <div class="splide" id="product-carousel">
+                <!-- Carousel Track -->
+                <div class="splide__track">
+                    <ul class="splide__list">
+                       
+                        <li class="splide__slide">
+                            <div class="card">
+                                <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
+                                    alt="SuperPhone X" class="card-image" />
+                                <div class="card-content">
+                                    <h2 class="card-title">SuperPhone X</h2>
+                                    <p class="card-price">$999.99</p>
+                                    <ul class="card-specs">
+                                        <li>8GB RAM</li>
+                                        <li>256GB Storage</li>
+                                        <li>Octa-core 2.8 GHz Processor</li>
+                                        <li>4500mAh Battery</li>
+                                    </ul>
+                                    <button class="card-button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </li>
         
+                        <li class="splide__slide">
+                            <div class="card">
+                                <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
+                                    alt="SuperPhone X" class="card-image" />
+                                <div class="card-content">
+                                    <h2 class="card-title">SuperPhone X</h2>
+                                    <p class="card-price">$999.99</p>
+                                    <ul class="card-specs">
+                                        <li>8GB RAM</li>
+                                        <li>256GB Storage</li>
+                                        <li>Octa-core 2.8 GHz Processor</li>
+                                        <li>4500mAh Battery</li>
+                                    </ul>
+                                    <button class="card-button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </li>
+                       
+                        <li class="splide__slide">
+                            <div class="card">
+                                <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
+                                    alt="SuperPhone X" class="card-image" />
+                                <div class="card-content">
+                                    <h2 class="card-title">SuperPhone X</h2>
+                                    <p class="card-price">$999.99</p>
+                                    <ul class="card-specs">
+                                        <li>8GB RAM</li>
+                                        <li>256GB Storage</li>
+                                        <li>Octa-core 2.8 GHz Processor</li>
+                                        <li>4500mAh Battery</li>
+                                    </ul>
+                                    <button class="card-button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="splide__slide">
+                            <div class="card">
+                                <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
+                                    alt="SuperPhone X" class="card-image" />
+                                <div class="card-content">
+                                    <h2 class="card-title">SuperPhone X</h2>
+                                    <p class="card-price">$999.99</p>
+                                    <ul class="card-specs">
+                                        <li>8GB RAM</li>
+                                        <li>256GB Storage</li>
+                                        <li>Octa-core 2.8 GHz Processor</li>
+                                        <li>4500mAh Battery</li>
+                                    </ul>
+                                    <button class="card-button">Add to Cart</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
     </div>
-    <footer class="footer">
+
+    <!-- <footer class="footer">
         <p>&copy; 2024 ShopSmart. All rights reserved.</p>
         <nav>
             <a href="#">Privacy Policy</a> |
             <a href="#">Terms of Service</a> |
             <a href="#">Contact Us</a>
         </nav>
-    </footer>
+    </footer> -->
 
 </body>
 
@@ -73,5 +165,19 @@
         },1000)
     }
 
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var splide = new Splide('#product-carousel', {
+            type: 'loop',      // Infinite loop
+            perPage: 3,        // Show 3 slides at a time
+            perMove: 1,        // Move one slide at a time
+            focus: 'center',   // Center the current slide
+            pagination: false, // Disable pagination
+            arrows: true,      // Enable navigation arrows
+        });
+
+        splide.mount(); // Mount the Splide instance
+    });
 </script>
 </html>
