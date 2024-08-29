@@ -1,23 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
 html,body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    height: 100vh;
-    width: 100vw;
-
+    font-family: "New Amsterdam", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 2px;
+    font-size: 1.05em;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: #e3e3e3;
 }
 
 nav {
-    height: 10%;
+    height: 10vh;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2C3E50;
+    background-color: #4bbf7b;
     color: rgb(255, 255, 255);
 }
 
 nav .logo {
+    width: 20%;
     margin-left: 2%;
 } 
 
@@ -26,7 +39,7 @@ nav .logo {
 }
 
 nav .links {
-    margin-right: 2%;
+    margin-right: 3%;
 }
 
 nav .links a {
@@ -36,9 +49,8 @@ nav .links a {
 }
 
 .main-container {
-    height: 90%;
     width: 100%;
-    display: flex;
+    overflow-x: hidden;
 }
 ul {
     list-style-type: none;
@@ -51,8 +63,8 @@ ul li {
 }
 
 .product-dashboard{
-    height: 100%;
     width: 100%;
+    overflow-x: hidden;
 }
 
 /* ======Bootstrap CSS Starts===== */
@@ -205,4 +217,25 @@ ul li {
     height: 1px;
     background-color: #444444;
     transform: translateY(-50%);
+}
+
+@media (max-width: 1200px) {
+    .section-products .col-xl-3 {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-products .col-xl-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-products .col-xl-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }

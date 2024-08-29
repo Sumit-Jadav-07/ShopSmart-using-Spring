@@ -16,7 +16,7 @@
 <body>
     <nav>
         <div class="logo">
-            <h1>Customer Dashboard</h1>
+            <h1>Dashboard</h1>
         </div>
         <div class="links">
             <a href="mycartpage">My Cart</a>

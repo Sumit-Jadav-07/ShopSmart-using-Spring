@@ -21,9 +21,6 @@
                     <a href="">About us </a>
                     <a href="">Products</a>
                     <a href="">Blog</a>
-                </div>
-                <div class="login">
-                    <a href="signuppage">Sign Up</a>
                     <a href="loginpage">Log In</a>
                 </div>
                 <div class="hamburger-menu">

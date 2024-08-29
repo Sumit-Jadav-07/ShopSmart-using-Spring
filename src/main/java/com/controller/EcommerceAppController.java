@@ -181,6 +181,11 @@ public class EcommerceAppController {
         }
     }
 
+    @GetMapping("/forgetpasswordpage")
+    public String forgetPasswordPage() {
+        return "Forgetpassword";
+    }
+
     @PostMapping("/forgetpassword")
     public String ForgetPassword(EcommerceAppBean ecom, Model model, HttpSession session) {
 

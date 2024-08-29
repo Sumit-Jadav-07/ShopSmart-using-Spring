@@ -22,10 +22,6 @@
                     <a href="">Products</a>
                     <a href="">Blog</a>
                 </div>
-                <div class="login">
-                    <a href="signuppage">Sign Up</a>
-                    <a href="loginpage">Log In</a>
-                </div>
                 <div class="hamburger-menu">
                     <a onclick=showSidebar() href="#"><svg xmlns="http://www.w3.org/2000/svg" height="35"
                             viewBox="0 -960 960 960" width="35">
@@ -41,15 +37,10 @@
                                 d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                         </svg></a>
 
-
                     <a href="homepage">Home</a>
                     <a href="">About us </a>
                     <a href="">Products</a>
                     <a href="">Blog</a>
-
-
-                    <a href="signuppage">Sign Up</a>
-                    <a href="loginpage">Log In</a>
 
                 </nav>
             </nav>
@@ -90,7 +81,7 @@
             <!-- Setup and start animation! -->
             <script>
                 var typed = new Typed('#element', {
-                    strings: ['Forget Password'],
+                    strings: ['Checkout'],
                     typeSpeed: 50,
                 });
 

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
-    <title>E Commerce Website </title>
+    <title>ShopSmart</title>
 </head>
 <body>
     <!-- Navbar -->
@@ -19,9 +19,6 @@
             <a href="">About us </a>
             <a href="">Products</a>
             <a href="">Blog</a>
-        </div>
-        <div class="login">
-            <a href="signuppage">Sign Up</a>
             <a href="loginpage">Log In</a>
         </div>
         <div class="hamburger-menu">
@@ -40,11 +37,22 @@
             <a href="">Products</a>
             <a href="">Blog</a>
 
-
-            <a href="signuppage">Sign Up</a>
             <a href="loginpage">Log In</a>
 
         </nav>
+
+    </nav>
+    <div class="main-content">
+        
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 ShopSmart. All rights reserved.</p>
+        <nav>
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Terms of Service</a> |
+            <a href="#">Contact Us</a>
+        </nav>
+    </footer>
 
 </body>
 

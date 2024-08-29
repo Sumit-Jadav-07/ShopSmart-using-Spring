@@ -17,7 +17,6 @@
         </div>
         <div class="links">
             <a href="customerdashboard">Your Dashboard</a>
-            <a href="logout">Log Out</a>
         </div>
     </nav>
 

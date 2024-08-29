@@ -9,77 +9,6 @@
             <link rel="stylesheet" href="${pageContext.request.contextPath}/css/forgetpassword.css">
             <title>Search Email</title>
         </head>
-        <style>
-            /* Global styles */
-            body {
-                margin: 0;
-                padding: 0;
-                font-family: sans-serif;
-                /* Choose a readable font family */
-                background-color: #f0f0f0;
-                /* Light gray background */
-                color: #333;
-                /* Dark text for contrast */
-            }
-
-            /* Header styles */
-            header {
-                display: flex;
-                /* Arrange header elements horizontally */
-                justify-content: space-between;
-                /* Space elements evenly */
-                align-items: center;
-                /* Align vertically */
-                padding: 1rem;
-                /* Add some padding for breathing room */
-                background-color: #fff;
-                /* White background for header */
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-                /* Subtle shadow */
-            }
-
-            h1 {
-                font-size: 1.5rem;
-                /* Adjust heading size as needed */
-                margin: 0;
-                /* Remove default margin */
-            }
-
-            /* Navigation styles */
-            nav {
-                display: flex;
-                list-style: none;
-                /* Remove bullet points for links */
-                padding: 0;
-                margin: 0;
-            }
-
-            nav a {
-                padding: 0.5rem 1rem;
-                /* Add some padding for clickable area */
-                text-decoration: none;
-                /* Remove underline */
-                color: inherit;
-                /* Use the same color as the body text */
-                transition: color 0.2s ease-in-out;
-                /* Smooth color transition on hover */
-            }
-
-            nav a:hover {
-                color: #007bff;
-                /* Blue highlight on hover */
-            }
-
-            /* Content area styles */
-            main {
-                padding: 1rem;
-                margin: 0 auto;
-                /* Center content horizontally */
-                max-width: 800px;
-                /* Limit content width for better responsiveness */
-            }
-        </style>
-
         <body>
 
             <nav class="navbar">
@@ -91,9 +20,6 @@
                     <a href="">About us </a>
                     <a href="">Products</a>
                     <a href="">Blog</a>
-                </div>
-                <div class="login">
-                    <a href="signuppage">Sign Up</a>
                     <a href="loginpage">Log In</a>
                 </div>
                 <div class="hamburger-menu">
