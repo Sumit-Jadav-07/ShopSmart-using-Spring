@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap');
+
+:root {
+    --bg-clr-body: #f7f9f9;
+    --bg-clr-navbar: #4bbf7b;
+    --font-clr: white;
+    --border-clr: #006DA4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "New Amsterdam", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 2px;
+    font-size: 1.05em;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-clr-body);
+    letter-spacing: 1px;
+}
+
+.navbar {
+    height: 10%;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--bg-clr-navbar);
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--font-clr);
+}
+
+.navbar .logo {
+    height: 100%;
+    width: 25%;
+
+    /* Center the logo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.navbar .list-items {
+    height: 100%;
+    width: 50%;
+
+    /* Center the list-items */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navbar .login {
+    height: 100%;
+    width: 25%;
+
+    /* Center the login */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navbar .login a {
+    padding: 5px 10px;
+    /* border: 2px solid var(--border-clr); */
+    border-radius: 10px;
+    transition: ease-in-out all .3s;
+}
+
+.navbar .login a:hover {
+    padding: 7px 12px;
+    /* border: 2px solid var(--border-clr); */
+    border-radius: 10px;
+    color: black;
+    background-color: #adb5bd;
+}
+
+svg {
+    fill: rgb(255, 255, 255);
+}
+
+.hamburger-menu {
+    margin-right: 1em;
+    display: none;
+}
+
+/* side-nabar css starts */
+
+.side-navbar {
+    height: 100%;
+    width: 225px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+    background-color: var(--bg-clr-navbar);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+}
+
+.side-navbar a {
+    width: 100%;
+    padding: 1rem;
+    margin-left: 0px;
+    padding-left: 14%;
+}
+
+.side-navbar a:hover {
+    background-color: #0505052e;
+}
+
+.main_container {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #006DA4; */
+}
+
+.form_container {
+    width: 700px;
+    background-color: rgba(231, 231, 232, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    text-align: center;
+    background-color: var(--bg-clr-navbar);
+    color: #ffffff;
+    padding: 10px 0;
+    border-radius: 20px 20px 0 0;
+}
+
+.product-form {
+    padding: 20px;
+}
+
+.product-form .input-group {
+    display: flex;
+    gap: 30px;
+}
+
+.product-form .input-group input {
+    height: 50px;
+    width: 100%;
+    flex: 1;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #f7f7f7;
+}
+
+.product-form .input-group input:focus {
+    border-color: #00a650;
+    outline: none;
+}
+
+.product-form input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    margin-bottom: 14px;
+    font-size: 20px;
+    width: 100%;
+}
+
+.product-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00a650;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.product-form button:hover {
+    background-color: #008f4e;
+}
+
+@media screen and (max-width: 600px) {
+    .product-form .input-group {
+        flex-direction: column;
+    }
+
+    .navbar .list-items {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: block;
+    }
+}
+
+
+@media(max-width : 770px) {
+    .navbar .list-items {
+        display: none;
+    }
+
+    .navbar .login {
+        display: none;
+    }
+
+    .navbar .hamburger-menu {
+        fill: white;
+        display: block;
+    }
+}
