@@ -11,10 +11,11 @@ public class MobileDao {
 
   @Autowired
   JdbcTemplate stmt;
-  
+
   public void addMobile(MobileBean bean) {
     String sql = "INSERT INTO mobiles (name, brand, ram, storage, battery, camera, price, quantity, imagepath) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    stmt.update(sql, bean.getName(), bean.getBrand(), bean.getRam(), bean.getStorage(), bean.getBattery(), bean.getCamera(), bean.getPrice(), bean.getQuantity(), bean.getMobileImagePath());
-}
+    stmt.update(sql, bean.getName(), bean.getBrand(), bean.getRam(), bean.getStorage(), bean.getBattery(),
+        bean.getCamera(), bean.getPrice(), bean.getQuantity(), bean.getMobileImagePath());
+  }
 
 }
