@@ -40,9 +40,7 @@
             <a href="">Blog</a>
 
             <a href="loginpage">Log In</a>
-
         </nav>
-
     </nav>
     <nav class="mini-navbar">
         <a href="">Mobiles</a>
@@ -55,85 +53,88 @@
             <div class="sec-heading">
                 <h1>Top Selling</h1>
             </div>
-            <div class="splide" id="product-carousel">
-                <!-- Carousel Track -->
-                <div class="splide__track">
-                    <ul class="splide__list">
-                       
-                        <li class="splide__slide">
-                            <div class="card">
-                                <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
-                                    alt="SuperPhone X" class="card-image" />
-                                <div class="card-content">
-                                    <h2 class="card-title">SuperPhone X</h2>
-                                    <p class="card-price">$999.99</p>
-                                    <ul class="card-specs">
-                                        <li>8GB RAM</li>
-                                        <li>256GB Storage</li>
-                                        <li>Octa-core 2.8 GHz Processor</li>
-                                        <li>4500mAh Battery</li>
-                                    </ul>
-                                    <button class="card-button">Add to Cart</button>
+            <div class="carousel-container">
+                <button class="carousel-arrow carousel-arrow--prev"><</button>
+                <div class="splide" id="product-carousel">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <!-- Slide 1 -->
+                            <li class="splide__slide">
+                                <div class="card">
+                                    <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
+                                        alt="SuperPhone X" class="card-image" />
+                                    <div class="card-content">
+                                        <h2 class="card-title">SuperPhone X</h2>
+                                        <p class="card-price">$999.99</p>
+                                        <ul class="card-specs">
+                                            <li>8GB RAM</li>
+                                            <li>256GB Storage</li>
+                                            <li>Octa-core 2.8 GHz Processor</li>
+                                            <li>4500mAh Battery</li>
+                                        </ul>
+                                        <button class="card-button">Add to Cart</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-        
-                        <li class="splide__slide">
-                            <div class="card">
-                                <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
-                                    alt="SuperPhone X" class="card-image" />
-                                <div class="card-content">
-                                    <h2 class="card-title">SuperPhone X</h2>
-                                    <p class="card-price">$999.99</p>
-                                    <ul class="card-specs">
-                                        <li>8GB RAM</li>
-                                        <li>256GB Storage</li>
-                                        <li>Octa-core 2.8 GHz Processor</li>
-                                        <li>4500mAh Battery</li>
-                                    </ul>
-                                    <button class="card-button">Add to Cart</button>
+                            </li>
+
+                            <li class="splide__slide">
+                                <div class="card">
+                                    <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
+                                        alt="SuperPhone X" class="card-image" />
+                                    <div class="card-content">
+                                        <h2 class="card-title">SuperPhone X</h2>
+                                        <p class="card-price">$999.99</p>
+                                        <ul class="card-specs">
+                                            <li>8GB RAM</li>
+                                            <li>256GB Storage</li>
+                                            <li>Octa-core 2.8 GHz Processor</li>
+                                            <li>4500mAh Battery</li>
+                                        </ul>
+                                        <button class="card-button">Add to Cart</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                       
-                        <li class="splide__slide">
-                            <div class="card">
-                                <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
-                                    alt="SuperPhone X" class="card-image" />
-                                <div class="card-content">
-                                    <h2 class="card-title">SuperPhone X</h2>
-                                    <p class="card-price">$999.99</p>
-                                    <ul class="card-specs">
-                                        <li>8GB RAM</li>
-                                        <li>256GB Storage</li>
-                                        <li>Octa-core 2.8 GHz Processor</li>
-                                        <li>4500mAh Battery</li>
-                                    </ul>
-                                    <button class="card-button">Add to Cart</button>
+                            </li>
+
+                            <li class="splide__slide">
+                                <div class="card">
+                                    <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
+                                        alt="SuperPhone X" class="card-image" />
+                                    <div class="card-content">
+                                        <h2 class="card-title">SuperPhone X</h2>
+                                        <p class="card-price">$999.99</p>
+                                        <ul class="card-specs">
+                                            <li>8GB RAM</li>
+                                            <li>256GB Storage</li>
+                                            <li>Octa-core 2.8 GHz Processor</li>
+                                            <li>4500mAh Battery</li>
+                                        </ul>
+                                        <button class="card-button">Add to Cart</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        
-                        <li class="splide__slide">
-                            <div class="card">
-                                <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
-                                    alt="SuperPhone X" class="card-image" />
-                                <div class="card-content">
-                                    <h2 class="card-title">SuperPhone X</h2>
-                                    <p class="card-price">$999.99</p>
-                                    <ul class="card-specs">
-                                        <li>8GB RAM</li>
-                                        <li>256GB Storage</li>
-                                        <li>Octa-core 2.8 GHz Processor</li>
-                                        <li>4500mAh Battery</li>
-                                    </ul>
-                                    <button class="card-button">Add to Cart</button>
+                            </li>
+
+                            <li class="splide__slide">
+                                <div class="card">
+                                    <img src="https://www.91-cdn.com/hub/wp-content/uploads/2023/10/iQOO-12-render.jpg"
+                                        alt="SuperPhone X" class="card-image" />
+                                    <div class="card-content">
+                                        <h2 class="card-title">SuperPhone X</h2>
+                                        <p class="card-price">$999.99</p>
+                                        <ul class="card-specs">
+                                            <li>8GB RAM</li>
+                                            <li>256GB Storage</li>
+                                            <li>Octa-core 2.8 GHz Processor</li>
+                                            <li>4500mAh Battery</li>
+                                        </ul>
+                                        <button class="card-button">Add to Cart</button>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
+                            </li>
+                            <!-- Repeat for other slides -->
+                        </ul>
+                    </div>
                 </div>
-            </div>
+                <button class="carousel-arrow carousel-arrow--next">></button>
         </section>
     </div>
 
@@ -169,15 +170,25 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var splide = new Splide('#product-carousel', {
-            type: 'loop',      // Infinite loop
-            perPage: 3,        // Show 3 slides at a time
-            perMove: 1,        // Move one slide at a time
-            focus: 'center',   // Center the current slide
-            pagination: false, // Disable pagination
-            arrows: true,      // Enable navigation arrows
+            type: 'loop',
+            perPage: 4,
+            perMove: 1,
+            pagination: false,
+            arrows: false, // Disable default arrows
+            gap: '1rem',
         });
 
-        splide.mount(); // Mount the Splide instance
+        // Custom arrow functionality
+        document.querySelector('.carousel-arrow--prev').addEventListener('click', function () {
+            splide.go('<');
+        });
+
+        document.querySelector('.carousel-arrow--next').addEventListener('click', function () {
+            splide.go('>');
+        });
+
+        splide.mount();
     });
 </script>
+
 </html>
