@@ -24,7 +24,7 @@ public class LaptopController {
   }
 
   @PostMapping("addLaptop")
-  public String postMethodName(LaptopBean bean) {
+  public String addLaptop(LaptopBean bean) {
       
     if(bean.getLaptopImagePath() == null) {
       String laptopImagePath = "D:\\Royal\\Spring\\EcommerceApp\\src\\main\\webapp\\images\\products\\laptops";
