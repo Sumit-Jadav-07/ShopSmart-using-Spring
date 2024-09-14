@@ -1,6 +1,9 @@
 package com.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -17,5 +20,10 @@ public class MobileDao {
     stmt.update(sql, bean.getName(), bean.getBrand(), bean.getRam(), bean.getStorage(), bean.getBattery(),
         bean.getCamera(), bean.getPrice(), bean.getQuantity(), bean.getMobileImagePath());
   }
+
+  public List<MobileBean> getAllMobiles(){
+		List<MobileBean> mobiles = stmt.query("select * from mobiles", new BeanPropertyRowMapper<MobileBean>(MobileBean.class));
+		return mobiles;
+	}
 
 }

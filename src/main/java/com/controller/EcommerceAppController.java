@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,7 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bean.CameraBean;
 import com.bean.EcommerceAppBean;
+import com.bean.LaptopBean;
+import com.bean.MasterProduct;
+import com.bean.MobileBean;
+import com.bean.SmartWatchBean;
+import com.dao.CameraDao;
+import com.dao.LaptopDao;
+import com.dao.MobileDao;
+import com.dao.SmartWatchDao;
 import com.dao.UserDao;
 import com.util.Validators;
 
@@ -38,8 +49,44 @@ public class EcommerceAppController {
     @Autowired
     JavaMailSender sender;
 
+    @Autowired
+    MobileDao mobileDao;
+
+    @Autowired 
+    LaptopDao laptopDao;
+
+    @Autowired
+    CameraDao cameraDao;
+
+    @Autowired
+    SmartWatchDao smartWatchDao;
+
     @GetMapping("/homepage")
-    public String HomePage() {
+    public String HomePage(Model model) {
+    	
+    	
+        List<MobileBean> mobiles = mobileDao.getAllMobiles();
+        List<LaptopBean> laptops = laptopDao.getAllLaptops();
+        List<CameraBean> cameras = cameraDao.getAllCameras();
+        List<SmartWatchBean> smartwatches = smartWatchDao.getAllSmartWatches();
+
+        model.addAttribute("mobiles", mobiles);
+        model.addAttribute("laptops", laptops);
+        model.addAttribute("cameras", cameras);
+        model.addAttribute("smartwatches", smartwatches);
+    //    MasterProduct master = new MasterProduct();
+    //     if(product.equals("laptops")) {
+    //     	master.setLaptops(laptops);
+    //     } else if (product.equals("mobiles")) {
+    //     	master.setMobiles(mobiles);
+    //     } else if(product.equals("cameras")) {
+    //     	master.setCameras(cameras);
+    //     } else if(product.equals("smartwatches")){
+    //     		master.setSmartwatches(smartwatches);
+    //     }
+        
+        
+        // model.addAttribute("master", master);
         return "Home";
     }
 
@@ -70,7 +117,7 @@ public class EcommerceAppController {
             return "Login";
         }
     }
-
+ 
     @GetMapping("/loginpage")
     public String LoginPage() {
         return "Login";
