@@ -127,6 +127,13 @@
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+				<groupId>org.webjars</groupId>
+				<artifactId>splide</artifactId>
+				<version>3.6.12</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

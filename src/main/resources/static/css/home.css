@@ -26,15 +26,13 @@ body {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    /* Prevent horizontal scrolling */
     overflow-y: auto;
-    /* Allow vertical scrolling */
 }
 
 .navbar {
-    height: 10%;
+    height: 10vh;
     width: 100%;
-
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -105,12 +103,13 @@ svg {
 }
 
 .mini-navbar {
-    height: 7%;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 75px;
     background: #d2d2d2;
+    flex-shrink: 0;
 }
 
 .mini-navbar a {
@@ -143,22 +142,21 @@ svg {
     transform: scaleX(0);
     transition: transform 0s;
 }
-
 .main-content {
-    height: 83%;
+    height: fit-content;
+    flex: 1;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3% 0;
-    gap: 2rem;
+    padding-top: 3%;
 }
 
 .main-content .section {
     min-height: 500px;
     width: 90%;
     max-width: 1500px;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .section .sec-heading {
@@ -167,7 +165,8 @@ svg {
     align-items: center;
     padding-left: 60px;
     font-size: 30px;
-    margin-bottom: 14px;
+    margin-bottom: 7px;
+    width: 80%;
 }
 
 .carousel-container {
@@ -207,6 +206,10 @@ svg {
     width: 100%;
 }
 
+.splide__slide{
+    gap: 5px;
+}
+
 .card {
     height: fit-content;
     background-color: white;
@@ -221,8 +224,8 @@ svg {
 
 .card-image {
     width: 100%;
-    height: 180px; /* or any desired height */
-    object-fit: cover;
+    height: 200px;
+    object-fit: fill;
 }
 
 .card-content {

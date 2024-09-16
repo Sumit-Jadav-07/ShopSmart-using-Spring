@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bean.CameraBean;
 import com.bean.EcommerceAppBean;
 import com.bean.LaptopBean;
-import com.bean.MasterProduct;
 import com.bean.MobileBean;
 import com.bean.SmartWatchBean;
 import com.dao.CameraDao;
@@ -86,7 +85,7 @@ public class EcommerceAppController {
     //     }
         
         
-        // model.addAttribute("master", master);
+    //     model.addAttribute("master", master);
         return "Home";
     }
 

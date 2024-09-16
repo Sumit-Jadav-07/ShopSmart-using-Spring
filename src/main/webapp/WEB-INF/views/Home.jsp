@@ -3,15 +3,15 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.bean.MobileBean"%>
 <%@ page import="com.bean.LaptopBean"%>
-<%@ page import="com.bean.MasterProduct"%>
+<%@ page import="com.bean.CameraBean"%>
+<%@ page import="com.bean.SmartWatchBean"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     <title>ShopSmart</title>
 </head>
 <body>
@@ -49,20 +49,22 @@
         <a href="">Laptops</a>
         <a href="">Cameras</a>
     </nav>
+    
     <div class="main-content">
+        <% List<MobileBean> mobiles = (List<MobileBean>) request.getAttribute("mobiles"); %>
+        <% List<LaptopBean> laptops = (List<LaptopBean>) request.getAttribute("laptops"); %>
+        <% List<CameraBean> cameras = (List<CameraBean>) request.getAttribute("cameras"); %>
+        <% List<SmartWatchBean> smartwatches = (List<SmartWatchBean>) request.getAttribute("smartwatches"); %>
         <section class="section">
             <div class="sec-heading">
-                <h1>Top Selling</h1>
+                <h1>Top Selling Mobiles</h1>
             </div>
-            <% List<MobileBean> mobiles = (List<MobileBean>) request.getAttribute("mobiles"); %>
             <div class="carousel-container">
-                <!-- Left Arrow -->
                 <button class="carousel-arrow carousel-arrow--prev"><</button>
-                        <!-- First Carousel -->
                         <div class="splide" id="product-carousel-1">
                             <div class="splide__track">
-                                <% for (MobileBean m : mobiles) { %>
                                 <ul class="splide__list">
+                                    <% for (MobileBean m : mobiles) { %>
                                     <li class="splide__slide">
                                         <div class="card">
                                             <% if (m.getMobileImagePath() == null || m.getMobileImagePath().length() == 0) { %>
@@ -84,32 +86,28 @@
                                             </div>
                                         </div>
                                     </li>
+                                    <% } %>
                                 </ul>
-                                <% } %>
                             </div>
                         </div>
-                <!-- Right Arrow -->
                 <button class="carousel-arrow carousel-arrow--next">></button>
-            </div>
-        </section>
+            </div> 
+        </section> 
 
-        <!-- Second Carousel -->
         <section class="section">
             <div class="sec-heading">
-                <h1>Top Selling</h1>
+                <h1>Top Selling Laptops</h1>
             </div>
-            <% List<LaptopBean> laptops = (List<LaptopBean>) request.getAttribute("laptops"); %>
             <div class="carousel-container">
-                <!-- Left Arrow -->
                 <button class="carousel-arrow carousel-arrow--prev"><</button>
                         <div class="splide" id="product-carousel-2">
                             <div class="splide__track">
-                                <% for (LaptopBean l : laptops) { %>
                                 <ul class="splide__list">
+                                    <% for (LaptopBean l : laptops) { %>
                                     <li class="splide__slide">
                                         <div class="card">
                                             <% if (l.getLaptopImagePath() == null || l.getLaptopImagePath().length() == 0) { %>
-                                                <img src="images/noImageAvailable.png" alt="" class="card-image" >
+                                                <img src="images/noImageAvailable.jpg" alt="" class="card-image">
                                               <% } else { %>
                                                 <img src="<%= l.getLaptopImagePath() %>"
                                                class="card-image" />
@@ -120,21 +118,62 @@
                                                 <ul class="card-specs">
                                                     <li><%= l.getRam() %> GB RAM</li>
                                                     <li><%= l.getStorage() %> GB Storage</li>
-                                                    <li><%= l.getProcessor() %> </li>
+                                                    <li><%= l.getProcessor() %></li>
                                                     <li><%= l.getBrand() %></li>
                                                 </ul>
                                                 <button class="card-button">Add to Cart</button>
                                             </div>
                                         </div>
                                     </li>
+                                    <% } %>
                                 </ul>
-                                <% } %>
                             </div>
                         </div>
                 <!-- Right Arrow -->
                 <button class="carousel-arrow carousel-arrow--next">></button>
             </div>
         </section>
+
+        <section class="section">
+            <div class="sec-heading">
+                <h1>Top Selling Cameras</h1>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-arrow carousel-arrow--prev"><</button>
+                        <div class="splide" id="product-carousel-3">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    <% for (CameraBean c : cameras) { %>
+                                    <li class="splide__slide">
+                                        <div class="card">
+                                            <% if (c.getCameraImagePath() == null || c.getCameraImagePath().length() == 0) { %>
+                                                <img src="images/noImageAvailable.jpg" alt="" class="card-image">
+                                              <% } else { %>
+                                                <img src="<%= c.getCameraImagePath() %>"
+                                               class="card-image" />
+                                              <% } %>        
+                                              <div class="card-content">
+                                                <h2 class="card-title"><%= c.getName() %></h2>
+                                                <p class="card-price"><%= c.getPrice() %></p>
+                                                <ul class="card-specs">
+                                                    <li><%= c.getResolution() %> MP</li>
+                                                    <li><%= c.getZoom() %> X</li>
+                                                    <li><%= c.getBattery() %> mAh</li>
+                                                    <li><%= c.getBrand() %></li>
+                                                </ul>
+                                                <button class="card-button">Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                        </div>
+                <!-- Right Arrow -->
+                <button class="carousel-arrow carousel-arrow--next">></button>
+            </div>
+        </section>
+
     </div>
 
     <script>
@@ -154,44 +193,26 @@
             }, 1000)
         }
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
 
-        // Initialize the Splide instances (moved inside the event listener)
-        const splide1 = new Splide('#product-carousel-1', {
-        type: 'loop',
-        perPage: 4,
-        perMove: 1,
-        pagination: false,
-        arrows: false,
-        gap: '1rem',
-        }).mount();
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const carousels = ['#product-carousel-1', '#product-carousel-2', '#product-carousel-3'];
+        
+        carousels.forEach((selector, index) => {
+            const splide = new Splide(selector, {
+                type: 'loop',
+                perPage: 4,
+                perMove: 1,
+                pagination: false,
+                arrows: false,
+                gap: '10px',
+            }).mount();
 
-        // Connect custom arrows to the first carousel
-        document.querySelector('.carousel-arrow--prev').addEventListener('click', function () {
-                splide1.go('<');
-            });
-        document.querySelector('.carousel-arrow--next').addEventListener('click', function () {
-                splide1.go('>');
-            });
-
-        const splide2 = new Splide('#product-carousel-2', {
-        type: 'loop',
-        perPage: 4,
-        perMove: 1,
-        pagination: false,
-        arrows: false,
-        gap: '1rem',
-        }).mount();
-
-        // Connect custom arrows to the first carousel
-        document.querySelector('.carousel-arrow--prev').addEventListener('click', function () {
-                splide2.go('<');
-            });
-        document.querySelector('.carousel-arrow--next').addEventListener('click', function () {
-                splide2.go('>');
-            });
+            document.querySelectorAll('.carousel-arrow--prev')[index]?.addEventListener('click', () => splide.go('<'));
+            document.querySelectorAll('.carousel-arrow--next')[index]?.addEventListener('click', () => splide.go('>'));
         });
-      </script>
+    });
+</script>
 </body>
 </html>
