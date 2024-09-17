@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bean.CameraBean;
 import com.bean.EcommerceAppBean;
 import com.bean.LaptopBean;
+import com.bean.MasterProduct;
 import com.bean.MobileBean;
 import com.bean.SmartWatchBean;
 import com.dao.CameraDao;
@@ -63,29 +64,19 @@ public class EcommerceAppController {
     @GetMapping("/homepage")
     public String HomePage(Model model) {
     	
+        MasterProduct products = new MasterProduct();
+        model.addAttribute("products", products);
     	
         List<MobileBean> mobiles = mobileDao.getAllMobiles();
         List<LaptopBean> laptops = laptopDao.getAllLaptops();
         List<CameraBean> cameras = cameraDao.getAllCameras();
         List<SmartWatchBean> smartwatches = smartWatchDao.getAllSmartWatches();
-
+        
         model.addAttribute("mobiles", mobiles);
         model.addAttribute("laptops", laptops);
         model.addAttribute("cameras", cameras);
         model.addAttribute("smartwatches", smartwatches);
-    //    MasterProduct master = new MasterProduct();
-    //     if(product.equals("laptops")) {
-    //     	master.setLaptops(laptops);
-    //     } else if (product.equals("mobiles")) {
-    //     	master.setMobiles(mobiles);
-    //     } else if(product.equals("cameras")) {
-    //     	master.setCameras(cameras);
-    //     } else if(product.equals("smartwatches")){
-    //     		master.setSmartwatches(smartwatches);
-    //     }
         
-        
-    //     model.addAttribute("master", master);
         return "Home";
     }
 
@@ -261,6 +252,11 @@ public class EcommerceAppController {
         cookie.setMaxAge(0);
         response.addCookie(cookie);
         return "redirect:/loginpage";
+    }
+
+    @GetMapping("/aboutuspage")
+    public String aboutUsPage(){
+        return "AboutUs";
     }
 
 }

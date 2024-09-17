@@ -212,6 +212,7 @@ svg {
 
 .card {
     height: fit-content;
+    /* height: 100%; */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -220,16 +221,23 @@ svg {
     flex-grow: 0;
     flex-shrink: 0;
     margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-image {
     width: 100%;
     height: 200px;
     object-fit: fill;
+    border-bottom: 1px solid #4bbf7b;
 }
 
 .card-content {
     padding: 16px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .card-title {
@@ -249,6 +257,8 @@ svg {
     list-style-type: none;
     padding: 0;
     margin: 0 0 16px 0;
+    /* overflow-y: auto; */
+    flex-grow: 1;
 }
 
 .card-specs li {
@@ -256,18 +266,33 @@ svg {
     margin-bottom: 8px;
 }
 
+section:nth-of-type(4) .card ul li:nth-child(2) {
+    max-height: 50px;
+    overflow-y: auto;
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+section:nth-of-type(4) .card ul li:nth-child(2)::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
 .card-button {
     display: block;
     width: 100%;
     padding: 10px;
     background-color: #4CAF50;
-    color: white;
-    text-align: center;
-    text-decoration: none;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
+    /* margin-top: auto; */
+}
+
+.card-button a{
+    color: white;
+    text-align: center;
+    text-decoration: none;
 }
 
 .card-button:hover {
@@ -275,18 +300,107 @@ svg {
 }
 
 .footer {
-    height: 10%;
-    width: 100%;
-    background-color: #4BBF7B;
-    text-align: center;
-    padding-top: 10px;
-    color: white;
+    color: var(--font-clr); /* Use the same font color for consistency */
+    padding: 40px 0; /* Provide sufficient padding for spacing */
+    display: flex;
+    justify-content: space-around; /* Spread footer content evenly */
+    flex-wrap: wrap;
+    font-size: 1rem;
 }
 
-.footer a {
-    text-decoration: none;
-    color: white;
+.footer-container {
+    background-color: #45A049; /* Use the same navbar color */
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0 auto;
 }
+
+.footer-section {
+    flex: 1;
+    padding: 20px;
+    min-width: 200px;
+    margin: 10px 0;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--font-clr);
+}
+
+.footer-section p,
+.footer-section a,
+.footer-section ul,
+.footer-section li {
+    font-size: 0.9rem;
+    color: var(--font-clr);
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+    color: var(--font-clr);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-section ul li a:hover {
+    color: #fff; 
+}
+
+.footer-section .social-media a {
+    display: inline-block;
+    margin-right: 10px;
+    color: var(--font-clr);
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-section .social-media a:hover {
+    color: #fff; 
+}
+
+/* Footer Bottom (Copyright Section) */
+.footer-bottom {
+    background-color: #45A049; 
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-clr);
+}
+
+.footer-bottom p {
+    color: var(--font-clr);
+    margin: 0;
+}
+
+/* Responsive Design for Footer */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .footer-section h3 {
+        margin-bottom: 10px;
+    }
+}
+
 
 @media(max-width : 723.2px) {
     .navbar .list-items {

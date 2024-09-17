@@ -8,4 +8,5 @@ public class CartBean {
     Integer userId;
     Integer productId;
     Integer quantity;
+    String type;  
 }

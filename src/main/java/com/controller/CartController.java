@@ -21,113 +21,72 @@ public class CartController {
     @Autowired
     CartDao cDao;
 
+    @Autowired
+    HttpServletRequest request;
+
     @GetMapping("/addtocart")
-    public String addToCart(@RequestParam("productId") Integer productId, HttpServletRequest request) {
-        Cookie[] cookies = request.getCookies();
-        String userIdStr = null;
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("user".equals(cookie.getName())) {
-                    userIdStr = cookie.getValue();
-                    break;
-                }
-            }
-        }
-
-        if (userIdStr == null) {
-            // Handle the case when the cookie is not found
-            return "redirect:/login"; // or any appropriate error page
-        }
-        Integer userId = Integer.parseInt(userIdStr);
+    public String addToCart(@RequestParam("productId") Integer productId, @RequestParam("type") String type) {
+        Integer userId = Integer.parseInt(getUserId());
         CartBean cBean = new CartBean();
         cBean.setProductId(productId);
+        cBean.setType(type);
         cBean.setUserId(userId);
-
-        Integer quantity = cDao.checkExistingProduct(cBean);
-
-        if(quantity == 0){
-           cDao.addToCart(cBean);
+        Integer quantity = cDao.checkExistingProduct(productId, userId, type);
+        if (quantity == 0) {
+            cDao.addToCart(cBean);
         } else {
             cBean.setQuantity(quantity + 1);
-            cDao.updateQuantity(cBean);
+            cDao.updateQuantity(productId, userId, type, cBean.getQuantity());
         }
         return "redirect:/customerdashboard";
     }
 
     @GetMapping("/mycartpage")
-    public String myCart(HttpServletRequest request, Model model) {
-        // Get the user ID from the cookie
-        Cookie[] cookies = request.getCookies();
-        String userIdStr = null;
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("user".equals(cookie.getName())) {
-                    userIdStr = cookie.getValue();
-                    break;
-                }
-            }
-        } 
-        if (userIdStr == null) {
-            // Handle the case when the cookie is not found
-            return "redirect:/loginpage"; // or any appropriate error page
-        }
-
-        Integer userId = Integer.parseInt(userIdStr);
-        System.out.println(userId);
-
-        List<ProductBean> products = cDao.myCart(userId);
+    public String myCart(Model model) {
+        Integer userId = Integer.parseInt(getUserId());
+        List<ProductBean> products = cDao.getAllCartItemsForUser(userId);
         model.addAttribute("products", products);
-
         return "MyCart";
     }
 
     @GetMapping("/removecartitem")
-    public String removerCartItem(@RequestParam("productId") Integer productId) {
-        cDao.deleteCartItem(productId);
+    public String removerCartItem(@RequestParam("productId") Integer productId, @RequestParam("type") String type) {
+        Integer userId = Integer.parseInt(getUserId());
+        cDao.deleteCartItem(productId, type, userId);
         return "redirect:/mycartpage";
     }
 
     @GetMapping("/decreasequantity")
-    public String decreaseQuantity(@RequestParam("productId") Integer productId, HttpServletRequest request) {
-        // Get the user ID from the cookie
-        Cookie[] cookies = request.getCookies();
-        String userIdStr = null;
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("user".equals(cookie.getName())) {
-                    userIdStr = cookie.getValue();
-                    break;
-                }
-            }
-        }
-        if (userIdStr == null) {
-            // Handle the case when the cookie is not found
-            return "redirect:/loginpage"; // or any appropriate error page
-        }
-
-        Integer userId = Integer.parseInt(userIdStr);
-
+    public String decreaseQuantity(@RequestParam("productId") Integer productId, @RequestParam("type") String type,
+            HttpServletRequest request) {
+        Integer userId = Integer.parseInt(getUserId());
         CartBean cBean = new CartBean();
         cBean.setProductId(productId);
-        cBean.setUserId(userId);
-
-        Integer quantity = cDao.checkExistingProduct(cBean);
+        Integer quantity = cDao.checkExistingProduct(productId, userId, type);
 
         if (quantity > 1) {
             cBean.setQuantity(quantity - 1);
-            cDao.updateQuantity(cBean);
+            cDao.updateQuantity(productId, userId, type, cBean.getQuantity());
         } else {
-            cDao.deleteCartItem(productId);
+            cDao.deleteCartItem(productId, type, userId);
         }
         return "redirect:/mycartpage";
     }
 
     @GetMapping("/increasequantity")
-    public String increaseQuantity(@RequestParam("productId") Integer productId, HttpServletRequest request) {
-        // Get the user ID from the cookie
+    public String increaseQuantity(@RequestParam("productId") Integer productId, @RequestParam("type") String type,
+            HttpServletRequest request) {
+        Integer userId = Integer.parseInt(getUserId());
+        CartBean cBean = new CartBean();
+        
+        cBean.setProductId(productId);
+        Integer quantity = cDao.checkExistingProduct(productId, userId, type);
+        cBean.setQuantity(quantity + 1);
+        cDao.updateQuantity(productId, userId, type, cBean.getQuantity());
+        return "redirect:/mycartpage";
+    }
+
+    public String getUserId() {
         Cookie[] cookies = request.getCookies();
         String userIdStr = null;
 
@@ -139,25 +98,11 @@ public class CartController {
                 }
             }
         }
+
         if (userIdStr == null) {
-            // Handle the case when the cookie is not found
-            return "redirect:/loginpage"; // or any appropriate error page
-        }
-
-        Integer userId = Integer.parseInt(userIdStr);
-
-        CartBean cBean = new CartBean();
-        cBean.setProductId(productId);
-        cBean.setUserId(userId);
-
-        Integer quantity = cDao.checkExistingProduct(cBean);
-
-        if (quantity > 1) {
-            cBean.setQuantity(quantity + 1);
-            cDao.updateQuantity(cBean);
+            return "redirect:/loginpage";
         } else {
-            cDao.deleteCartItem(productId);
+            return userIdStr;
         }
-        return "redirect:/mycartpage";
     }
 }

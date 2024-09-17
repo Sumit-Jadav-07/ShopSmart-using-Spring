@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=New+Amsterdam&display=swap');
+
+:root {
+    --bg-clr-body: #f7f9f9;
+    --bg-clr-navbar: #4bbf7b;
+    --font-clr: white;
+    --border-clr: #006DA4;
+    --heading-clr: #0a6d4e;
+    --accent-clr: #00a7f7;
+    --text-animation-color: #006DA4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "New Amsterdam", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: 2px;
+    font-size: 1.05em;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--bg-clr-body);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Navbar */
+.navbar {
+    height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-clr-navbar);
+    padding: 1.5rem 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--font-clr);
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: var(--accent-clr);
+}
+
+.navbar .logo {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar .list-items {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+svg {
+    fill: rgb(255, 255, 255);
+}
+
+.hamburger-menu {
+    margin-right: 1em;
+    display: none;
+}
+
+/* Side Navbar */
+.side-navbar {
+    height: 100%;
+    width: 225px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+    background-color: var(--bg-clr-navbar);
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%);
+}
+
+.side-navbar a {
+    width: 100%;
+    padding: 1rem;
+    margin-left: 0px;
+    padding-left: 14%;
+}
+
+.side-navbar a:hover {
+    background-color: #0505052e;
+}
+
+/* About Us Section */
+.about-us {
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px 0;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+.about-header h1 {
+    font-size: 3em;
+    color: var(--heading-clr);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.about-header h1::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background-color: var(--accent-clr);
+    bottom: 0;
+    left: -100%;
+    animation: underline 1.5s forwards;
+}
+
+@keyframes underline {
+    to {
+        left: 0;
+    }
+}
+
+.about-content p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    transition: color 0.5s;
+}
+
+.about-content p:hover {
+    color: var(--text-animation-color);
+}
+
+.our-values h2 {
+    color: var(--heading-clr);
+    margin-bottom: 20px;
+    animation: slideInFromLeft 0.8s ease-out;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.our-values ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.our-values ul li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    position: relative;
+    padding-left: 30px;
+}
+
+.our-values ul li i{
+  color: #00a7f7;
+}
+
+/* Team Section */
+.team-section h2 {
+    color: var(--heading-clr);
+    margin-bottom: 20px;
+    animation: slideInFromRight 0.8s ease-out;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.team-members {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.team-member {
+    text-align: center;
+    width: 30%;
+    transition: transform 0.3s;
+}
+
+.team-member:hover {
+    transform: scale(1.05);
+}
+
+.team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.team-member h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--accent-clr);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-clr-navbar);
+    color: var(--font-clr);
+    padding: 20px;
+    text-align: center;
+}
+
+.footer a {
+    color: var(--font-clr);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

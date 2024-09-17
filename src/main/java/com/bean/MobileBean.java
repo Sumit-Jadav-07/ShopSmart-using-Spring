@@ -9,7 +9,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
 @Component
-public class MobileBean {
+public class MobileBean implements Product {
 
   Integer mobileId;
   String name;
@@ -22,5 +22,25 @@ public class MobileBean {
   Integer quantity;
   MultipartFile mobileImage;
   String mobileImagePath;
+
+  @Override
+  public Integer getId() {
+    return mobileId;
+  }
+
+  @Override
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public String getImagePath() {
+    return mobileImagePath;
+  }
+
+  @Override
+  public Float getPrice() {
+    return price;
+  }
 
 }

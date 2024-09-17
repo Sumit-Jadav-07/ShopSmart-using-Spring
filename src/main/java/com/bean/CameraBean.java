@@ -6,7 +6,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
-public class CameraBean {
+public class CameraBean implements Product {
 
   Integer cameraId;
   String name;
@@ -18,6 +18,26 @@ public class CameraBean {
   Integer quantity;
   Float price;
   MultipartFile cameraImage;  
-  String cameraImagePath;     
+  String cameraImagePath; 
+  
+  @Override
+  public Integer getId() {
+    return cameraId;
+  }
+
+  @Override
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public String getImagePath() {
+    return cameraImagePath;
+  }
+
+  @Override
+  public Float getPrice() {
+    return price;
+  }
   
 }

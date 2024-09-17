@@ -41,9 +41,9 @@
                     <div class="product-details">
                         <div class="c1">
                             <h1><%= p.getProductName() %></h1>
-                            <a href="decreasequantity?productId=<%= p.getProductId() %>"><button type="button">-</button></a>
+                            <a href="decreasequantity?type=<%= p.getType()%>&productId=<%= p.getProductId() %>"><button type="button">-</button></a>
                             <span><%= p.getQuantity() %></span>
-                            <a href="increasequantity?productId=<%= p.getProductId() %>"><button type="button">+</button></a>
+                            <a href="increasequantity?type=<%= p.getType()%>&productId=<%= p.getProductId() %>"><button type="button">+</button></a>
                         </div>
                         <div class="price">
                             <p>&#x20b9;<%= p.getPrice() %></p>
@@ -51,7 +51,7 @@
                     </div>
                     <div class="product-price">
                         <div class="c2">
-                            <a href="removecartitem?productId=<%= p.getProductId() %>"><button type="button">x</button></a>
+                            <a href="removecartitem?type=<%= p.getType()%>&productId=<%= p.getProductId() %>"><button type="button">x</button></a>
                             <p>&#x20b9;<%= df.format(total_product_price) %></p>
                         </div>
                     </div>

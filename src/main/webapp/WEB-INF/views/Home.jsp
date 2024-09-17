@@ -44,10 +44,10 @@
         </nav>
     </nav>
     <nav class="mini-navbar">
-        <a href="">Mobiles</a>
-        <a href="">Smart Watch</a>
-        <a href="">Laptops</a>
-        <a href="">Cameras</a>
+        <a href="#mobiles-section">Mobiles</a>
+        <a href="#laptops-section">Laptops</a>
+        <a href="#cameras-section">Cameras</a>
+        <a href="#smartwatches-section">Smart Watch</a>
     </nav>
     
     <div class="main-content">
@@ -55,7 +55,8 @@
         <% List<LaptopBean> laptops = (List<LaptopBean>) request.getAttribute("laptops"); %>
         <% List<CameraBean> cameras = (List<CameraBean>) request.getAttribute("cameras"); %>
         <% List<SmartWatchBean> smartwatches = (List<SmartWatchBean>) request.getAttribute("smartwatches"); %>
-        <section class="section">
+
+        <section id="mobiles-section" class="section">
             <div class="sec-heading">
                 <h1>Top Selling Mobiles</h1>
             </div>
@@ -82,7 +83,7 @@
                                                     <li><%= m.getBattery() %> mAh</li>
                                                     <li><%= m.getBrand() %></li>
                                                 </ul>
-                                                <button class="card-button">Add to Cart</button>
+                                                <button class="card-button"><a href="addtocart?type=mobile&productId=<%= m.getMobileId() %>">Add to Cart</a></button>
                                             </div>
                                         </div>
                                     </li>
@@ -94,7 +95,7 @@
             </div> 
         </section> 
 
-        <section class="section">
+        <section id="laptops-section" class="section">
             <div class="sec-heading">
                 <h1>Top Selling Laptops</h1>
             </div>
@@ -121,7 +122,7 @@
                                                     <li><%= l.getProcessor() %></li>
                                                     <li><%= l.getBrand() %></li>
                                                 </ul>
-                                                <button class="card-button">Add to Cart</button>
+                                                <button class="card-button"><a href="addtocart?type=laptop&productId=<%= l.getLaptopId() %>">Add to Cart</a></button>
                                             </div>
                                         </div>
                                     </li>
@@ -134,7 +135,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section id="cameras-section" class="section">
             <div class="sec-heading">
                 <h1>Top Selling Cameras</h1>
             </div>
@@ -156,12 +157,52 @@
                                                 <h2 class="card-title"><%= c.getName() %></h2>
                                                 <p class="card-price"><%= c.getPrice() %></p>
                                                 <ul class="card-specs">
-                                                    <li><%= c.getResolution() %> MP</li>
-                                                    <li><%= c.getZoom() %> X</li>
+                                                    <li><%= c.getResolution() %>MP</li>
+                                                    <li><%= c.getZoom() %>X</li>
                                                     <li><%= c.getBattery() %> mAh</li>
                                                     <li><%= c.getBrand() %></li>
                                                 </ul>
-                                                <button class="card-button">Add to Cart</button>
+                                                <button class="card-button"><a href="addtocart?type=camera&productId=<%= c.getCameraId() %>">Add to Cart</a></button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <% } %>
+                                </ul>
+                            </div>
+                        </div>
+                <!-- Right Arrow -->
+                <button class="carousel-arrow carousel-arrow--next">></button>
+            </div>
+        </section>
+        
+        <section id="smartwatches-section" class="section">
+            <div class="sec-heading">
+                <h1>Top Selling SmartWatches</h1>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-arrow carousel-arrow--prev"><</button>
+                        <div class="splide" id="product-carousel-4">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    <% for (SmartWatchBean s : smartwatches) { %>
+                                    <li class="splide__slide">
+                                        <div class="card">
+                                            <% if (s.getSmartWatchImagePath() == null || s.getSmartWatchImagePath().length() == 0) { %>
+                                                <img src="images/noImageAvailable.jpg" alt="" class="card-image">
+                                              <% } else { %>
+                                                <img src="<%= s.getSmartWatchImagePath() %>"
+                                               class="card-image" />
+                                              <% } %>        
+                                              <div class="card-content">
+                                                <h2 class="card-title"><%= s.getName() %></h2>
+                                                <p class="card-price"><%= s.getPrice() %></p>
+                                                <ul class="card-specs">
+                                                    <li><%= s.getDisplay() %></li>
+                                                    <li><%= s.getFeatures() %></li>
+                                                    <li><%= s.getBattery() %> mAh</li>
+                                                    <li><%= s.getBrand() %></li>
+                                                </ul>
+                                                <button class="card-button"><a href="addtocart?type=smartwatch&productId=<%= s.getSmartWatchId() %>">Add to Cart</a></button>
                                             </div>
                                         </div>
                                     </li>
@@ -176,6 +217,76 @@
 
     </div>
 
+    <footer>
+        <div class="footer-container">
+            <!-- Company Info and Logo -->
+            <div class="footer-section about">
+                <h3>ShopSmart</h3>
+                <p>Your one-stop shop for Mobiles, Laptops, Smart Watches, and Cameras. We offer top-quality products at competitive prices with fast and reliable delivery.</p>
+                <div class="social-media">
+                    <a href="https://facebook.com/shopsmart"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://instagram.com/shopsmart"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://twitter.com/shopsmart"><i class="fab fa-twitter"></i> Twitter</a>
+                </div>
+            </div>
+    
+            <!-- Quick Links -->
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+    
+            <!-- Customer Service -->
+            <div class="footer-section customer-service">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="returns.html">Returns & Refunds</a></li>
+                    <li><a href="shipping.html">Shipping Info</a></li>
+                    <li><a href="support.html">Support Center</a></li>
+                    <li><a href="order-status.html">Track Your Order</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Information -->
+            <div class="footer-section contact-info">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 ShopSmart St, Ahmedabad, India</li>
+                    <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                    <li><i class="fas fa-envelope"></i> support@shopsmart.com</li>
+                </ul>
+            </div>
+        </div>
+    
+        <!-- Copyright Section -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 ShopSmart. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.mini-navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                        
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         function showSidebar() {
             const sidebar = document.querySelector(".side-navbar");
@@ -194,25 +305,25 @@
         }
     </script>
 
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const carousels = ['#product-carousel-1', '#product-carousel-2', '#product-carousel-3'];
-        
-        carousels.forEach((selector, index) => {
-            const splide = new Splide(selector, {
-                type: 'loop',
-                perPage: 4,
-                perMove: 1,
-                pagination: false,
-                arrows: false,
-                gap: '10px',
-            }).mount();
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carousels = ['#product-carousel-1', '#product-carousel-2', '#product-carousel-3','#product-carousel-4'];
+            
+            carousels.forEach((selector, index) => {
+                const splide = new Splide(selector, {
+                    type: 'loop',
+                    perPage: 4,
+                    perMove: 1,
+                    pagination: false,
+                    arrows: false,
+                    gap: '10px',
+                }).mount();
 
-            document.querySelectorAll('.carousel-arrow--prev')[index]?.addEventListener('click', () => splide.go('<'));
-            document.querySelectorAll('.carousel-arrow--next')[index]?.addEventListener('click', () => splide.go('>'));
+                document.querySelectorAll('.carousel-arrow--prev')[index]?.addEventListener('click', () => splide.go('<'));
+                document.querySelectorAll('.carousel-arrow--next')[index]?.addEventListener('click', () => splide.go('>'));
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
