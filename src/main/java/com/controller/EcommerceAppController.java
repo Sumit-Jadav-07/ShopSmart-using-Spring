@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bean.CameraBean;
 import com.bean.EcommerceAppBean;
 import com.bean.LaptopBean;
-import com.bean.MasterProduct;
 import com.bean.MobileBean;
 import com.bean.SmartWatchBean;
 import com.dao.CameraDao;
@@ -63,9 +62,6 @@ public class EcommerceAppController {
 
     @GetMapping("/homepage")
     public String HomePage(Model model) {
-    	
-        MasterProduct products = new MasterProduct();
-        model.addAttribute("products", products);
     	
         List<MobileBean> mobiles = mobileDao.getAllMobiles();
         List<LaptopBean> laptops = laptopDao.getAllLaptops();

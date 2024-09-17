@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 @Data
 @FieldDefaults(level = lombok.AccessLevel.PRIVATE)
-public class SmartWatchBean implements Product {
+public class SmartWatchBean {
 
   Integer smartWatchId;
   String name;
@@ -20,24 +20,4 @@ public class SmartWatchBean implements Product {
   MultipartFile smartWatchImage;
   String smartWatchImagePath;
 
-  @Override
-  public Integer getId() {
-    return smartWatchId;
-  }
-
-  @Override
-  public String getName() {
-    return name;
-  }
-
-  @Override
-  public String getImagePath() {
-    return smartWatchImagePath;
-  }
-
-  @Override
-  public Float getPrice() {
-    return price;
-  }
-  
 }
