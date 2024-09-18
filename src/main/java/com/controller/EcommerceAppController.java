@@ -255,4 +255,8 @@ public class EcommerceAppController {
         return "AboutUs";
     }
 
+    @GetMapping("/productpage")
+    public String productPage(){
+        return "Products";
+    }
 }

@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <title>ShopSmart</title>
 </head>
 <body>
@@ -20,11 +21,12 @@
             <a href="homepage">ShopSmart</a>
         </div>
         <div class="list-items">
-            <a href="homepage">Home</a>
-            <a href="">About us</a>
-            <a href="">Products</a>
-            <a href="">Blog</a>
-            <a href="loginpage">Log In</a>
+            <a href="homepage" class="active" >Home</a>
+            <a href="" >Shop</a>
+            <a href="" >Blog</a>
+            <a href="aboutuspage" >About us</a>
+            <a href="aboutuspage" >Contact us</a>
+            <a href="mycartpage"><i class="fa-solid fa-cart-shopping"></i></a>
         </div>
         <div class="hamburger-menu">
             <a onclick="showSidebar()" href="#"><svg xmlns="http://www.w3.org/2000/svg" height="35" viewBox="0 -960 960 960" width="35">
@@ -43,13 +45,7 @@
             <a href="loginpage">Log In</a>
         </nav>
     </nav>
-    <nav class="mini-navbar">
-        <a href="#mobiles-section">Mobiles</a>
-        <a href="#laptops-section">Laptops</a>
-        <a href="#cameras-section">Cameras</a>
-        <a href="#smartwatches-section">Smart Watch</a>
-    </nav>
-    
+
     <div class="main-content">
         <% List<MobileBean> mobiles = (List<MobileBean>) request.getAttribute("mobiles"); %>
         <% List<LaptopBean> laptops = (List<LaptopBean>) request.getAttribute("laptops"); %>
@@ -224,9 +220,9 @@
                 <h3>ShopSmart</h3>
                 <p>Your one-stop shop for Mobiles, Laptops, Smart Watches, and Cameras. We offer top-quality products at competitive prices with fast and reliable delivery.</p>
                 <div class="social-media">
-                    <a href="https://facebook.com/shopsmart"><i class="fab fa-facebook"></i> Facebook</a>
-                    <a href="https://instagram.com/shopsmart"><i class="fab fa-instagram"></i> Instagram</a>
-                    <a href="https://twitter.com/shopsmart"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="https://facebook.com"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a href="https://instagram.com"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="https://twitter.com"><i class="fab fa-twitter"></i> Twitter</a>
                 </div>
             </div>
     
@@ -234,8 +230,8 @@
             <div class="footer-section links">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="aboutuspage">About Us</a></li>
+                    <li><a href="contactuspage">Contact Us</a></li>
                     <li><a href="faq.html">FAQ</a></li>
                     <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     <li><a href="terms.html">Terms & Conditions</a></li>
@@ -258,7 +254,7 @@
                 <h3>Contact Us</h3>
                 <ul>
                     <li><i class="fas fa-map-marker-alt"></i> 123 ShopSmart St, Ahmedabad, India</li>
-                    <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                    <li><i class="fas fa-phone"></i> +91 7016994734</li>
                     <li><i class="fas fa-envelope"></i> support@shopsmart.com</li>
                 </ul>
             </div>
@@ -270,23 +266,6 @@
         </div>
     </footer>
     
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelectorAll('.mini-navbar a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                        
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
     <script>
         function showSidebar() {
             const sidebar = document.querySelector(".side-navbar");

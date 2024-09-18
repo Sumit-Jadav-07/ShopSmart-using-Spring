@@ -58,10 +58,10 @@
           essentials, ShopSmart is your go-to destination.</p>
 
         <p>We value our customers, and their satisfaction is our top priority. Our dedicated team works tirelessly to
-          ensure that every product you receive meets your expectations. We’re always here to help, from the moment you
+          ensure that every product you receive meets your expectations. We're always here to help, from the moment you
           browse to the moment you unbox your purchase.</p>
 
-        <p>Thank you for choosing ShopSmart as your trusted shopping partner. We’re excited to continue growing with you
+        <p>Thank you for choosing ShopSmart as your trusted shopping partner. We're excited to continue growing with you
           and making your shopping experience better every day.</p>
       </div>
 

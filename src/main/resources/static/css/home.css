@@ -43,17 +43,38 @@ body {
 .navbar a {
     text-decoration: none;
     color: var(--font-clr);
+    position: relative;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 3px;
+    border-radius: 4px;
+    background-color: #006DA4;
+    bottom: -3px;
+    left: 0;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform .3s ease;
+}
+
+.navbar a:hover::after {
+    transform: scaleX(1);
+    transition: transform .3s ease;
+}
+
+.navbar a.active::after {
+    transform: scaleX(1);
 }
 
 .navbar .logo {
     height: 100%;
     width: 25%;
-
-    /* Center the logo */
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .navbar .list-items {
@@ -102,46 +123,7 @@ svg {
     background-color: #0505052e;
 }
 
-.mini-navbar {
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 75px;
-    background: #d2d2d2;
-    flex-shrink: 0;
-}
-
-.mini-navbar a {
-    text-decoration: none;
-    color: #4b4b4b;
-    cursor: pointer;
-    position: relative;
-}
-
-.mini-navbar a::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    border-radius: 4px;
-    background-color: #18272F;
-    bottom: 0;
-    left: 0;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform .3s ease-in-out;
-}
-
-.mini-navbar a:hover::before {
-    transform-origin: left;
-    transform: scaleX(1);
-}
-
-.mini-navbar a:active::before {
-    transform: scaleX(0);
-    transition: transform 0s;
-}
+/* ===== Main Content CSS ===== */
 .main-content {
     height: fit-content;
     flex: 1;
@@ -149,7 +131,7 @@ svg {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 3%;
+    padding: 3% 0;
 }
 
 .main-content .section {
@@ -206,7 +188,7 @@ svg {
     width: 100%;
 }
 
-.splide__slide{
+.splide__slide {
     gap: 5px;
 }
 
@@ -269,12 +251,15 @@ svg {
 section:nth-of-type(4) .card ul li:nth-child(2) {
     max-height: 50px;
     overflow-y: auto;
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For Internet Explorer and Edge */
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
 }
 
 section:nth-of-type(4) .card ul li:nth-child(2)::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
+    display: none;
+    /* For Chrome, Safari, and Opera */
 }
 
 .card-button {
@@ -289,7 +274,7 @@ section:nth-of-type(4) .card ul li:nth-child(2)::-webkit-scrollbar {
     /* margin-top: auto; */
 }
 
-.card-button a{
+.card-button a {
     color: white;
     text-align: center;
     text-decoration: none;
@@ -300,16 +285,20 @@ section:nth-of-type(4) .card ul li:nth-child(2)::-webkit-scrollbar {
 }
 
 .footer {
-    color: var(--font-clr); /* Use the same font color for consistency */
-    padding: 40px 0; /* Provide sufficient padding for spacing */
+    color: var(--font-clr);
+    /* Use the same font color for consistency */
+    padding: 40px 0;
+    /* Provide sufficient padding for spacing */
     display: flex;
-    justify-content: space-around; /* Spread footer content evenly */
+    justify-content: space-around;
+    /* Spread footer content evenly */
     flex-wrap: wrap;
     font-size: 1rem;
 }
 
 .footer-container {
-    background-color: #45A049; /* Use the same navbar color */
+    background-color: #45A049;
+    /* Use the same navbar color */
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -354,7 +343,7 @@ section:nth-of-type(4) .card ul li:nth-child(2)::-webkit-scrollbar {
 }
 
 .footer-section ul li a:hover {
-    color: #fff; 
+    color: #fff;
 }
 
 .footer-section .social-media a {
@@ -367,14 +356,14 @@ section:nth-of-type(4) .card ul li:nth-child(2)::-webkit-scrollbar {
 }
 
 .footer-section .social-media a:hover {
-    color: #fff; 
+    color: #fff;
 }
 
 /* Footer Bottom (Copyright Section) */
 .footer-bottom {
-    background-color: #45A049; 
+    background-color: #45A049;
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0;
     font-size: 0.9rem;
     border-top: 1px solid var(--border-clr);
 }
