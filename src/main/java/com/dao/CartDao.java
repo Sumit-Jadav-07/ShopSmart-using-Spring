@@ -1,10 +1,13 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.ColumnMapRowMapper;
 import org.springframework.stereotype.Repository;
 import com.bean.CartBean;
 import com.bean.ProductBean;
@@ -14,8 +17,6 @@ public class CartDao {
 
     @Autowired
     JdbcTemplate stmt;
-
-    private static final Logger log = Logger.getLogger(CartDao.class.getName());
 
     public void addToCart(CartBean cBean) {
         stmt.update("INSERT INTO carts (userId, productId, quantity, type) VALUES (?, ?, ?, ?)",
@@ -30,7 +31,8 @@ public class CartDao {
     public Integer checkExistingProduct(Integer productId, Integer userId, String type) {
         String query = "SELECT quantity FROM carts WHERE productId = ? AND userId = ? AND type = ?";
         try {
-            CartBean bean = stmt.queryForObject(query, new BeanPropertyRowMapper<>(CartBean.class), productId, userId, type);
+            CartBean bean = stmt.queryForObject(query, new BeanPropertyRowMapper<>(CartBean.class), productId, userId,
+                    type);
             return bean.getQuantity();
         } catch (Exception e) {
             return 0;
@@ -42,8 +44,7 @@ public class CartDao {
             stmt.update("UPDATE carts SET quantity = ? WHERE productId = ? AND userId = ? AND type = ?",
                     quantity, productId, userId, type);
         } catch (Exception e) {
-            log.severe("Error updating quantity: " + e.getMessage());
-            throw e;
+            e.printStackTrace();
         }
     }
 
@@ -84,5 +85,40 @@ public class CartDao {
             item.setType(rs.getString("type"));
             return item;
         }, userId);
+    }
+
+    public List<ProductBean> getAllProducts() {
+        List<ProductBean> products = new ArrayList<>();
+    
+        // Define queries for each product type
+        String[] queries = {
+                "SELECT m.mobile_id, 'mobile' AS type, m.name, m.price, m.mobile_image_path FROM mobiles m",
+                "SELECT l.laptopId, 'laptop' AS type, l.name, l.price, l.laptopImagePath FROM laptops l",
+                "SELECT cam.camera_id, 'camera' AS type, cam.name, cam.price, cam.camera_image_path FROM cameras cam",
+                "SELECT sw.smartWatchId, 'smartwatch' AS type, sw.name, sw.price, sw.smartWatchImagePath FROM smartwatch sw"
+        };
+    
+        // Define column names for each query
+        String[][] columnNames = {
+                {"mobile_id", "type", "name", "price", "mobile_image_path"},
+                {"laptopId", "type", "name", "price", "laptopImagePath"},
+                {"camera_id", "type", "name", "price", "camera_image_path"},
+                {"smartWatchId", "type", "name", "price", "smartWatchImagePath"}
+        };
+    
+        // Execute queries and add products to list
+        for (int i = 0; i < queries.length; i++) {
+            List<Map<String, Object>> queryResults = stmt.query(queries[i], new ColumnMapRowMapper());
+            for (Map<String, Object> row : queryResults) {
+                ProductBean product = new ProductBean();
+                product.setProductId((Integer) row.get(columnNames[i][0]));
+                product.setType((String) row.get(columnNames[i][1]));
+                product.setProductName((String) row.get(columnNames[i][2]));
+                product.setPrice((Float) row.get(columnNames[i][3]));
+                product.setProductImagePath((String) row.get(columnNames[i][4]));
+                products.add(product);
+            }
+        }
+        return products;
     }
 }
