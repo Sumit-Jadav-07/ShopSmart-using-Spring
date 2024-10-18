@@ -29,9 +29,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import com.service.OtpService;
+import com.service.Services;
 
 @Controller
-public class EcommerceAppController {
+public class SessionController {
 
     @Autowired
     private Validators validator;
@@ -51,7 +52,7 @@ public class EcommerceAppController {
     @Autowired
     MobileDao mobileDao;
 
-    @Autowired 
+    @Autowired
     LaptopDao laptopDao;
 
     @Autowired
@@ -62,18 +63,19 @@ public class EcommerceAppController {
 
     @GetMapping("/homepage")
     public String HomePage(Model model) {
-    	
+
         List<MobileBean> mobiles = mobileDao.getAllMobiles();
         List<LaptopBean> laptops = laptopDao.getAllLaptops();
         List<CameraBean> cameras = cameraDao.getAllCameras();
         List<SmartWatchBean> smartwatches = smartWatchDao.getAllSmartWatches();
-        
+
         model.addAttribute("mobiles", mobiles);
         model.addAttribute("laptops", laptops);
         model.addAttribute("cameras", cameras);
         model.addAttribute("smartwatches", smartwatches);
-        
+
         return "Home";
+
     }
 
     @GetMapping("/signuppage")
@@ -103,7 +105,7 @@ public class EcommerceAppController {
             return "Login";
         }
     }
- 
+
     @GetMapping("/loginpage")
     public String LoginPage() {
         return "Login";
@@ -251,12 +253,12 @@ public class EcommerceAppController {
     }
 
     @GetMapping("/aboutuspage")
-    public String aboutUsPage(){
+    public String aboutUsPage() {
         return "AboutUs";
     }
 
     @GetMapping("/productpage")
-    public String productPage(){
+    public String productPage() {
         return "Products";
     }
 }

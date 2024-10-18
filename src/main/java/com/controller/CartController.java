@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bean.CartBean;
 import com.bean.ProductBean;
 import com.dao.CartDao;
+import com.service.Services;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.Cookie;
 
 @Controller
 public class CartController {
@@ -24,9 +24,15 @@ public class CartController {
     @Autowired
     HttpServletRequest request;
 
+    @Autowired
+    Services service;
+
     @GetMapping("/addtocart")
     public String addToCart(@RequestParam("productId") Integer productId, @RequestParam("type") String type) {
-        Integer userId = Integer.parseInt(getUserId());
+        if (service.getUserId() == null) {
+            return "redirect:/loginpage";
+        }
+        Integer userId = Integer.parseInt(service.getUserId());
         CartBean cBean = new CartBean();
         cBean.setProductId(productId);
         cBean.setType(type);
@@ -43,7 +49,7 @@ public class CartController {
 
     @GetMapping("/mycartpage")
     public String myCart(Model model) {
-        Integer userId = Integer.parseInt(getUserId());
+        Integer userId = Integer.parseInt(service.getUserId());
         List<ProductBean> products = cDao.getAllCartItemsForUser(userId);
         model.addAttribute("products", products);
         return "MyCart";
@@ -51,7 +57,7 @@ public class CartController {
 
     @GetMapping("/removecartitem")
     public String removerCartItem(@RequestParam("productId") Integer productId, @RequestParam("type") String type) {
-        Integer userId = Integer.parseInt(getUserId());
+        Integer userId = Integer.parseInt(service.getUserId());
         cDao.deleteCartItem(productId, type, userId);
         return "redirect:/mycartpage";
     }
@@ -59,7 +65,7 @@ public class CartController {
     @GetMapping("/decreasequantity")
     public String decreaseQuantity(@RequestParam("productId") Integer productId, @RequestParam("type") String type,
             HttpServletRequest request) {
-        Integer userId = Integer.parseInt(getUserId());
+        Integer userId = Integer.parseInt(service.getUserId());
         CartBean cBean = new CartBean();
         cBean.setProductId(productId);
         Integer quantity = cDao.checkExistingProduct(productId, userId, type);
@@ -76,9 +82,9 @@ public class CartController {
     @GetMapping("/increasequantity")
     public String increaseQuantity(@RequestParam("productId") Integer productId, @RequestParam("type") String type,
             HttpServletRequest request) {
-        Integer userId = Integer.parseInt(getUserId());
+        Integer userId = Integer.parseInt(service.getUserId());
         CartBean cBean = new CartBean();
-        
+
         cBean.setProductId(productId);
         Integer quantity = cDao.checkExistingProduct(productId, userId, type);
         cBean.setQuantity(quantity + 1);
@@ -86,23 +92,4 @@ public class CartController {
         return "redirect:/mycartpage";
     }
 
-    public String getUserId() {
-        Cookie[] cookies = request.getCookies();
-        String userIdStr = null;
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("user".equals(cookie.getName())) {
-                    userIdStr = cookie.getValue();
-                    break;
-                }
-            }
-        }
-
-        if (userIdStr == null) {
-            return "redirect:/loginpage";
-        } else {
-            return userIdStr;
-        }
-    }
 }
